@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
     "dev:next": "node scripts/dev-server.mjs",
-    "build": "node scripts/prebuild-prisma.mjs && prisma generate && node scripts/build-server.mjs",
+    "build": "prisma generate && node scripts/build-server.mjs",
     "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint",
