@@ -1,0 +1,573 @@
+{
+  "hospital": {
+    "name": "N.P.N. CARE HOSPITAL",
+    "hindiName": "एन. पी. एन. केयर हॉस्पिटल",
+    "legalName": "Navel Power Naturopathy India Pvt. Ltd.",
+    "registrationNo": "U86903UP2023PTC178984",
+    "tagline": "Integrated Healthcare for Better Living",
+    "phone": "+91 91197 44783",
+    "secondaryPhone": "+91 90685 34783",
+    "emergency": "+91 91197 44783",
+    "whatsapp": "+91 90685 34783",
+    "email": "care@npncarehospital.com",
+    "address": "Pathak Ji Complex, Main Chauraha to Mant Road, Gorei, Iglas, Aligarh, Uttar Pradesh 202145",
+    "hours": "Mon-Sat, 10:00 AM - 4:00 PM | Sunday closed",
+    "mapQuery": "Pathak Ji Complex Gorei Iglas Aligarh Uttar Pradesh 202145"
+  },
+  "hero": {
+    "eyebrow": "Navel Power Naturopathy India Pvt. Ltd. | Reg. No. U86903UP2023PTC178984",
+    "title": "Healing Beyond Medicine",
+    "subtitle": "Personalized healthcare combining natural therapies with experienced medical guidance.",
+    "primaryButton": "Book Appointment",
+    "secondaryButton": "Talk to Doctor",
+    "locationLabel": "Gorei, Iglas, Aligarh"
+  },
+  "homepage": {
+    "whyEyebrow": "Why Choose Us",
+    "whyTitle": "Why patients choose N.P.N. Care Hospital.",
+    "whyText": "Modern care should feel easy to understand, respectful to the family, and guided by doctors who look beyond symptoms.",
+    "aboutEyebrow": "About Hospital",
+    "aboutTitle": "A modern destination for natural and integrative healing.",
+    "aboutLead": "N.P.N. Care Hospital brings together Ayurveda, Naturopathy, Electro Homeopathy, lifestyle guidance, and compassionate clinical review so patients can understand their health and make confident care decisions.",
+    "aboutBullets": [
+      "Treatment plans are personalized to medical history, reports, age, lifestyle, and family needs.",
+      "Pamphlet details are organized into simple sections for families, senior citizens, insured patients, and eligible low-income patients.",
+      "Every service is presented clearly, without poster-style clutter or confusing medical language."
+    ],
+    "missionTitle": "To make natural and integrative care more accessible for everyday families.",
+    "missionText": "We help patients move from symptom confusion to a clear care pathway built around consultation, therapy, documentation, and follow-up.",
+    "visionTitle": "To build a trusted N.P.N. Care Hospital network across India.",
+    "visionText": "The pamphlet mentions more than 18 hospitals across India; the website turns that ambition into a modern digital healthcare experience.",
+    "statsTitle": "Trust signals that help patients feel confident immediately.",
+    "schemesTitle": "Important schemes and notices made simple for patients.",
+    "schemesText": "The original pamphlet information is converted into clear, patient-friendly cards so families can understand support schemes without reading a crowded poster.",
+    "responsibleTitle": "No medical promise is shown without consultation.",
+    "responsibleText": "Treatment suitability, written terms, insurance approval, refund rules, and expected outcomes must be confirmed with the hospital team during registration.",
+    "departmentsTitle": "Integrated healthcare departments for whole-person care.",
+    "departmentsText": "Each department is designed as a care pathway, not just a service name.",
+    "conditionTitle": "A clearer directory of the health concerns patients ask about.",
+    "conditionText": "Patients can start from common symptoms or disease areas, then speak with a doctor before beginning any treatment plan.",
+    "treatmentsTitle": "Condition-focused treatment cards for fast understanding.",
+    "treatmentsText": "Patients can browse by condition, understand the pathway, and request the right appointment quickly.",
+    "doctorsTitle": "Doctor profiles from the pamphlet, presented professionally.",
+    "journeyTitle": "A guided path from first call to long-term wellness.",
+    "storiesTitle": "Real outcomes presented with dignity and clarity.",
+    "galleryTitle": "Visual proof of care, facilities, and community presence.",
+    "videoTitle": "Education, patient awareness, and doctor guidance.",
+    "blogTitle": "SEO-ready health education for patients and families.",
+    "faqTitle": "Simple answers for patients who need confidence before visiting.",
+    "appointmentTitle": "A calm, fast booking experience for every patient.",
+    "appointmentText": "Share your preferred treatment, doctor, date, and time. The care desk can route your request to the right department and confirm by phone or WhatsApp.",
+    "contactTitle": "Reach the hospital quickly.",
+    "philosophyEyebrow": "Our Philosophy",
+    "philosophyTitle": "Professional healthcare with natural healing.",
+    "philosophyText": "N.P.N. Care Hospital believes recovery begins when patients understand their body, their reports, their daily habits, and the treatment path ahead. We combine natural therapies with experienced medical guidance so care feels calm, personal, and practical.",
+    "philosophyBullets": [
+      "Listen first, then design a care plan around the patient.",
+      "Use natural therapies responsibly with medical history and reports.",
+      "Support long-term wellness through follow-up, routines, and prevention."
+    ],
+    "facilitiesTitle": "Hospital facilities designed for calm, safe visits.",
+    "facilitiesText": "From reception to therapy rooms, every patient touchpoint is presented as a clean, comfortable, and professional healthcare environment.",
+    "toolsTitle": "Find the right next step in seconds.",
+    "toolsText": "Search doctors, match a treatment, calculate BMI, switch language, and use accessibility controls before booking."
+  },
+  "trustStats": [
+    {
+      "label": "Years of Experience",
+      "value": "15+"
+    },
+    {
+      "label": "Patients Served",
+      "value": "48K+"
+    },
+    {
+      "label": "Expert Doctors",
+      "value": "04"
+    },
+    {
+      "label": "Modern Facilities",
+      "value": "08"
+    },
+    {
+      "label": "24x7 Support",
+      "value": "24/7"
+    }
+  ],
+  "values": [
+    {
+      "title": "Experienced Doctors",
+      "text": "Consultations are guided by experienced practitioners who explain each step clearly before care begins.",
+      "iconKey": "stethoscope"
+    },
+    {
+      "title": "Personalized Care",
+      "text": "Plans are shaped around reports, age, symptoms, lifestyle, family needs, and treatment history.",
+      "iconKey": "heart"
+    },
+    {
+      "title": "Natural Healing",
+      "text": "Ayurveda, naturopathy, electro homeopathy, nutrition, and lifestyle care work together thoughtfully.",
+      "iconKey": "leaf"
+    },
+    {
+      "title": "Affordable Treatment",
+      "text": "Families can discuss available schemes, insurance support, and suitable care options at the help desk.",
+      "iconKey": "users"
+    },
+    {
+      "title": "Modern Facilities",
+      "text": "A clean, calm, and organized care environment helps patients feel safe from arrival to follow-up.",
+      "iconKey": "building"
+    },
+    {
+      "title": "Patient-Centered Approach",
+      "text": "Every service is designed for simple communication, dignity, transparency, and family confidence.",
+      "iconKey": "shield"
+    },
+    {
+      "title": "Long-Term Wellness",
+      "text": "Follow-ups, prevention, daily routines, and recovery support help patients build sustainable health.",
+      "iconKey": "leaf"
+    }
+  ],
+  "departments": [
+    {
+      "name": "Ayurveda",
+      "summary": "Personalized protocols rooted in classical wisdom and patient assessment.",
+      "iconKey": "leaf"
+    },
+    {
+      "name": "Naturopathy",
+      "summary": "Drugless therapies, detox support, nutrition, and lifestyle correction.",
+      "iconKey": "waves"
+    },
+    {
+      "name": "Electro Homeopathy",
+      "summary": "Doctor-guided alternative care listed in the hospital pamphlet.",
+      "iconKey": "sparkles"
+    },
+    {
+      "name": "Lifestyle Wellness",
+      "summary": "Daily routine, nutrition, sleep, stress, weight, and metabolic wellness support.",
+      "iconKey": "activity"
+    },
+    {
+      "name": "Pain Management",
+      "summary": "Non-surgical support for joint, knee, spine, back, and cervical pain.",
+      "iconKey": "bone"
+    },
+    {
+      "name": "Preventive Healthcare",
+      "summary": "Early guidance, risk awareness, follow-up, and long-term wellness planning.",
+      "iconKey": "shield"
+    }
+  ],
+  "treatments": [
+    {
+      "slug": "joint-pain",
+      "title": "Joint Pain",
+      "summary": "Mobility-focused care for knee, shoulder, and chronic joint discomfort.",
+      "details": "A personalized plan may include doctor consultation, posture assessment, Ayurveda therapies, naturopathy support, diet correction, and guided mobility routines.",
+      "iconKey": "bone"
+    },
+    {
+      "slug": "diabetes-care",
+      "title": "Diabetes Care",
+      "summary": "Integrated lifestyle, nutrition, monitoring, and metabolic support.",
+      "details": "Care focuses on blood sugar awareness, weight management, food habits, stress, sleep, and doctor-led follow-up for safer long-term control.",
+      "iconKey": "droplets"
+    },
+    {
+      "slug": "kidney-care",
+      "title": "Kidney Care",
+      "summary": "Supportive wellness plans for kidney health, stones, and preventive monitoring.",
+      "details": "Doctors guide hydration habits, diet, medical history review, lab monitoring, and safe supportive therapies based on the patient's condition.",
+      "iconKey": "droplets"
+    },
+    {
+      "slug": "liver-care",
+      "title": "Liver Care",
+      "summary": "Digestive, detox, nutrition, and lifestyle support for liver wellness.",
+      "details": "The care pathway emphasizes safe evaluation, dietary correction, metabolic improvement, and holistic routines that reduce avoidable strain.",
+      "iconKey": "activity"
+    },
+    {
+      "slug": "heart-care",
+      "title": "Heart Care",
+      "summary": "Lifestyle, monitoring, and supportive integrative care for heart wellness.",
+      "details": "Doctors review symptoms, reports, medicines, diet, stress, and activity patterns before recommending a safe supportive care plan.",
+      "iconKey": "heart"
+    },
+    {
+      "slug": "lung-care",
+      "title": "Lung and Breathing Care",
+      "summary": "Supportive care for breathing difficulty, recurring cough, and respiratory weakness.",
+      "details": "The program may include medical review, breathing practices, trigger awareness, immunity support, and follow-up guidance.",
+      "iconKey": "activity"
+    },
+    {
+      "slug": "spine-cervical-care",
+      "title": "Spine and Cervical Care",
+      "summary": "Care for cervical pain, back pain, disc-related discomfort, and posture concerns.",
+      "details": "A structured pathway helps patients understand pain triggers, posture, mobility, therapies, and practical home routines.",
+      "iconKey": "bone"
+    },
+    {
+      "slug": "nerve-care",
+      "title": "Nerve and Numbness Care",
+      "summary": "Support for nerve blockage concerns, numbness, tingling, and limb discomfort.",
+      "details": "Doctors assess medical history and symptoms carefully, then guide therapies, diet, exercise, and referral needs where appropriate.",
+      "iconKey": "brain"
+    },
+    {
+      "slug": "paralysis-rehabilitation-support",
+      "title": "Paralysis Rehabilitation Support",
+      "summary": "Long-term supportive rehabilitation planning for paralysis and weakness.",
+      "details": "Care focuses on supervised support, family guidance, therapy routines, prevention of complications, and regular progress review.",
+      "iconKey": "shield"
+    },
+    {
+      "slug": "stone-and-urinary-care",
+      "title": "Stone and Urinary Care",
+      "summary": "Doctor-led guidance for kidney stone concerns, urinary discomfort, and hydration habits.",
+      "details": "Patients are guided through report review, hydration, diet, symptom monitoring, and appropriate clinical referral when needed.",
+      "iconKey": "droplets"
+    },
+    {
+      "slug": "thyroid",
+      "title": "Thyroid",
+      "summary": "Whole-person support for thyroid balance, weight, mood, and energy.",
+      "details": "A doctor-led program looks at reports, symptoms, nutrition, stress, sleep, and routine habits to support more stable health.",
+      "iconKey": "sparkles"
+    },
+    {
+      "slug": "skin-disorders",
+      "title": "Skin Disorders",
+      "summary": "Natural and clinical care for recurring skin concerns and inflammation.",
+      "details": "Plans may combine internal health review, diet changes, cleansing routines, Ayurveda support, and follow-up for visible progress.",
+      "iconKey": "activity"
+    },
+    {
+      "slug": "digestive-disorders",
+      "title": "Digestive Disorders",
+      "summary": "Gut-focused care for acidity, bloating, constipation, and irregular digestion.",
+      "details": "Treatment is built around food timing, trigger mapping, stress regulation, digestive therapies, and practical lifestyle changes.",
+      "iconKey": "fileHeart"
+    },
+    {
+      "slug": "back-pain",
+      "title": "Back Pain",
+      "summary": "Posture, therapy, and recovery programs for back and spine discomfort.",
+      "details": "The pathway may include pain evaluation, movement guidance, therapies, ergonomic education, and follow-up tracking.",
+      "iconKey": "bone"
+    },
+    {
+      "slug": "arthritis",
+      "title": "Arthritis",
+      "summary": "Comfort, flexibility, and inflammation support for arthritis patients.",
+      "details": "Care combines physician assessment, gentle therapies, anti-inflammatory nutrition, daily movement planning, and patient education.",
+      "iconKey": "activity"
+    },
+    {
+      "slug": "migraine",
+      "title": "Migraine",
+      "summary": "Trigger-led migraine care for stress, sleep, digestion, and lifestyle patterns.",
+      "details": "Doctors help identify triggers, improve routines, and build a preventive care plan alongside appropriate medical guidance.",
+      "iconKey": "brain"
+    },
+    {
+      "slug": "womens-health",
+      "title": "Women's Health",
+      "summary": "Respectful care for hormonal, metabolic, reproductive, and wellness needs.",
+      "details": "Programs support menstrual concerns, fatigue, weight, stress, family health, and preventive wellness.",
+      "iconKey": "heart"
+    },
+    {
+      "slug": "respiratory-care",
+      "title": "Respiratory Care",
+      "summary": "Breathing, immunity, allergy, and lifestyle support for respiratory wellness.",
+      "details": "Care includes breathing practices, trigger awareness, immunity support, environment guidance, and doctor-led monitoring.",
+      "iconKey": "activity"
+    },
+    {
+      "slug": "cancer-supportive-care",
+      "title": "Cancer Supportive Care",
+      "summary": "Supportive wellness guidance for strength, nutrition, comfort, and coordinated referral.",
+      "details": "This is supportive care only and does not replace oncology treatment. Doctors help families with nutrition, fatigue, comfort, and safe coordination with specialist medical care.",
+      "iconKey": "shield"
+    }
+  ],
+  "doctors": [
+    {
+      "name": "Dr. Sukhwinder Singh",
+      "qualification": "Punjab (M.D.), B.E.M.S. Electro Homeopathy, D.N.Y.S. Naturopathy",
+      "experience": "Managing Director",
+      "specialization": "Chronic disease specialist, Ayurveda, Naturopathy, Electro Homeopathy advisor",
+      "languages": "Hindi, English, Punjabi",
+      "initials": "SS"
+    },
+    {
+      "name": "Dr. S. S. Singh",
+      "qualification": "B.E.M.S. Electro Homeopathy, D.N.Y.S. Naturopathy",
+      "experience": "Chronic Disease Expert",
+      "specialization": "Electro Homeopathy, Naturopathy, Ayurveda and chronic disease advisory",
+      "languages": "Hindi, English",
+      "initials": "SS"
+    },
+    {
+      "name": "Dr. Raj Kumari",
+      "qualification": "B.A.M.S. Alternative",
+      "experience": "Chronic Disease Expert",
+      "specialization": "Naturopathy advisory and alternative care",
+      "languages": "Hindi, English",
+      "initials": "RK"
+    },
+    {
+      "name": "Dr. G. K. Kumari",
+      "qualification": "D.N.Y.S. Naturopathy",
+      "experience": "Naturopathy Advisor",
+      "specialization": "Natural healing, wellness routines, and patient guidance",
+      "languages": "Hindi, English",
+      "initials": "GK"
+    }
+  ],
+  "patientSchemes": [
+    {
+      "title": "Free Registration for Eligible Poor Families",
+      "text": "Eligible poor families can ask the hospital desk about the free-registration and free-treatment support scheme mentioned in the pamphlet.",
+      "iconKey": "users"
+    },
+    {
+      "title": "Private Insurance Support",
+      "text": "Patients with private insurance policies can contact the care desk for cashless or bill-support guidance, subject to policy terms and approval.",
+      "iconKey": "fileHeart"
+    },
+    {
+      "title": "Documented Care Assurance",
+      "text": "The pamphlet mentions written assurance and refund documentation. Patients should verify the final terms at registration before starting treatment.",
+      "iconKey": "shield"
+    },
+    {
+      "title": "Doctor-prepared Medicines",
+      "text": "The pamphlet states that medicines are prepared by the hospital's specialist doctors. Patients should share current medicines and reports before any plan begins.",
+      "iconKey": "stethoscope"
+    }
+  ],
+  "conditionGroups": [
+    "Liver, kidney and heart concerns",
+    "Lung and breathing problems",
+    "Joint pain, knee pain and arthritis",
+    "Back pain, spine pain and cervical pain",
+    "Nerve blockage, numbness and tingling",
+    "Paralysis and long-term weakness support",
+    "Diabetes, thyroid and cholesterol concerns",
+    "Digestive disorders and stomach problems",
+    "Skin disorders and chronic itching",
+    "Women's health, men's health and infertility concerns",
+    "Tumor and cancer supportive care with referral guidance",
+    "General body pain and lifestyle disorders"
+  ],
+  "patientHindiHighlights": [
+    "निःशुल्क पंजीकरण योजना की जानकारी �स्पताल से प्राप्त करें।",
+    "प्राइवेट बीमा पॉलिसी पर कैशलेस या बिल सहायता उपलब्ध हो सकती है।",
+    "इलाज शुरू करने से पहले �पनी पुरानी रिपोर्ट और दवाइयों की जानकारी डॉक्टर को दें।",
+    "हेल्पलाइन: 9119744783, 9068534783"
+  ],
+  "journey": [
+    "Appointment",
+    "Consultation",
+    "Diagnosis",
+    "Personalized Treatment Plan",
+    "Therapy",
+    "Follow-up",
+    "Recovery Support"
+  ],
+  "testimonials": [
+    {
+      "name": "Suresh Patel",
+      "condition": "Joint pain recovery",
+      "quote": "The doctors explained everything simply. My treatment felt organized, respectful, and focused on daily improvement."
+    },
+    {
+      "name": "Farida Khan",
+      "condition": "Diabetes lifestyle program",
+      "quote": "The care team helped me understand food, sleep, stress, and reports in a way my whole family could follow."
+    },
+    {
+      "name": "Amit Verma",
+      "condition": "Back pain management",
+      "quote": "The therapy schedule and doctor follow-up gave me confidence. The hospital feels modern and very human."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Do I need previous reports for consultation?",
+      "a": "Bring any recent reports, prescriptions, scans, or discharge summaries. The doctor can still guide you if you do not have them."
+    },
+    {
+      "q": "Can senior citizens book appointments easily?",
+      "a": "Yes. Families can book online, call the hospital, or use WhatsApp for assisted booking."
+    },
+    {
+      "q": "Are Ayurveda, Naturopathy, and Electro Homeopathy used together?",
+      "a": "Doctors recommend an integrated plan only after reviewing the patient's condition, medical history, current treatment, and reports."
+    },
+    {
+      "q": "What are the hospital timings?",
+      "a": "The pamphlet lists consultation timing as 10:00 AM to 4:00 PM, with Sunday closed."
+    },
+    {
+      "q": "Is free treatment available?",
+      "a": "The pamphlet mentions a free-treatment support scheme for eligible poor families. Please confirm eligibility and documents at the hospital desk."
+    },
+    {
+      "q": "Can I use private insurance?",
+      "a": "The pamphlet says patients may receive support through private insurance policies, subject to policy terms and approval."
+    },
+    {
+      "q": "What about the assurance mentioned in the pamphlet?",
+      "a": "Any assurance, refund process, or written documentation should be confirmed at registration, including eligibility, exclusions, and treatment-completion requirements."
+    },
+    {
+      "q": "Is emergency support available?",
+      "a": "The helpline numbers are visible throughout the website for urgent help and quick routing."
+    }
+  ],
+  "blogPosts": [
+    {
+      "slug": "ayurveda-and-modern-diagnostics",
+      "title": "How Ayurveda and Modern Diagnostics Can Work Together",
+      "category": "Integrative Care",
+      "readTime": "5 min read",
+      "excerpt": "A clear look at how reports, symptoms, lifestyle, and natural care can support better decisions."
+    },
+    {
+      "slug": "joint-pain-warning-signs",
+      "title": "Joint Pain Warning Signs Families Should Not Ignore",
+      "category": "Pain Care",
+      "readTime": "4 min read",
+      "excerpt": "Simple indicators that help patients seek care early and avoid preventable discomfort."
+    },
+    {
+      "slug": "diabetes-lifestyle-routine",
+      "title": "A Daily Routine for Better Diabetes Management",
+      "category": "Lifestyle",
+      "readTime": "6 min read",
+      "excerpt": "Food timing, movement, sleep, stress, and follow-up habits that make care more sustainable."
+    }
+  ],
+  "gallery": [
+    "Reception",
+    "Consultation",
+    "Therapy Rooms",
+    "Wellness Spaces",
+    "Pharmacy",
+    "Patient Lounge",
+    "Modern Equipment",
+    "Clean Environment"
+  ],
+  "videoTitles": [
+    "Doctor Explains Chronic Care",
+    "Patient Recovery Story",
+    "Daily Wellness Tips"
+  ],
+  "adminModules": [
+    {
+      "title": "Appointments",
+      "value": "126",
+      "iconKey": "calendar"
+    },
+    {
+      "title": "Doctors",
+      "value": "04",
+      "iconKey": "stethoscope"
+    },
+    {
+      "title": "Treatments",
+      "value": "42",
+      "iconKey": "leaf"
+    },
+    {
+      "title": "Gallery",
+      "value": "318",
+      "iconKey": "building"
+    },
+    {
+      "title": "Videos",
+      "value": "64",
+      "iconKey": "video"
+    },
+    {
+      "title": "Reviews",
+      "value": "1,842",
+      "iconKey": "message"
+    },
+    {
+      "title": "SEO Pages",
+      "value": "89",
+      "iconKey": "check"
+    },
+    {
+      "title": "Users",
+      "value": "18",
+      "iconKey": "users"
+    }
+  ],
+  "cmsAreas": [
+    "Homepage Sections",
+    "Doctors",
+    "Departments",
+    "Treatments",
+    "Blogs",
+    "Gallery",
+    "Videos",
+    "Testimonials",
+    "FAQs",
+    "SEO",
+    "Media Library",
+    "Settings"
+  ],
+  "facilities": [
+    {
+      "name": "Reception",
+      "summary": "A calm arrival area for registration, support, and first guidance.",
+      "iconKey": "building"
+    },
+    {
+      "name": "Consultation Rooms",
+      "summary": "Private consultation spaces for doctor-led history review and care planning.",
+      "iconKey": "stethoscope"
+    },
+    {
+      "name": "Therapy Rooms",
+      "summary": "Comfortable therapy rooms for naturopathy, pain care, and recovery support.",
+      "iconKey": "waves"
+    },
+    {
+      "name": "Wellness Spaces",
+      "summary": "Quiet wellness areas that support natural healing and patient comfort.",
+      "iconKey": "leaf"
+    },
+    {
+      "name": "Pharmacy",
+      "summary": "Medicine support with clear guidance from the hospital care team.",
+      "iconKey": "fileHeart"
+    },
+    {
+      "name": "Patient Lounge",
+      "summary": "Seating and waiting space designed for patients and families.",
+      "iconKey": "users"
+    },
+    {
+      "name": "Modern Equipment",
+      "summary": "Organized equipment zones that support clean and efficient patient care.",
+      "iconKey": "sparkles"
+    },
+    {
+      "name": "Clean Environment",
+      "summary": "A hygienic environment maintained for patient confidence and safety.",
+      "iconKey": "shield"
+    }
+  ]
+}

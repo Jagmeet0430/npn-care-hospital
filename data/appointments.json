@@ -1,0 +1,44 @@
+[
+  {
+    "id": "bb6bf644-25da-4f10-89fa-224d4f6daadf",
+    "status": "received",
+    "createdAt": "2026-07-30T04:16:40.704Z",
+    "name": "Jagmeet Saini",
+    "age": 22,
+    "gender": "Male",
+    "phone": "+91 98765 43210",
+    "email": "sainijagmeet0921@gmail.com",
+    "treatment": "Back Pain",
+    "doctor": "Dr. Sukhwinder Singh",
+    "date": "2026-08-02",
+    "time": "Morning"
+  },
+  {
+    "id": "appt_seed_1",
+    "name": "Ramesh Kumar",
+    "age": 58,
+    "gender": "Male",
+    "phone": "9876543210",
+    "email": "ramesh@example.com",
+    "treatment": "Joint Pain",
+    "doctor": "Dr. Sukhwinder Singh",
+    "date": "2026-07-29",
+    "time": "Morning",
+    "status": "confirmed",
+    "createdAt": "2026-07-28T10:30:00.000Z"
+  },
+  {
+    "id": "appt_seed_2",
+    "name": "Meena Shah",
+    "age": 45,
+    "gender": "Female",
+    "phone": "9876543211",
+    "email": "meena@example.com",
+    "treatment": "Diabetes Care",
+    "doctor": "Dr. Raj Kumari",
+    "date": "2026-07-29",
+    "time": "Afternoon",
+    "status": "received",
+    "createdAt": "2026-07-28T12:00:00.000Z"
+  }
+]

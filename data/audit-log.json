@@ -1,0 +1,24 @@
+[
+  {
+    "id": "a3cc6adc-8fb1-4e9c-ad6c-91b3b45bf9cb",
+    "at": "2026-07-30T09:26:03.406Z",
+    "action": "LOGIN_SUCCESS",
+    "actorId": "local-super-admin",
+    "actorEmail": "admin@npncarehospital.com",
+    "role": "SUPER_ADMIN",
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.8875",
+    "message": "User signed in successfully."
+  },
+  {
+    "id": "63467fc3-8af2-4df8-aa6b-c370f81fabb2",
+    "at": "2026-07-30T09:23:36.419Z",
+    "action": "LOGIN_SUCCESS",
+    "actorId": "local-super-admin",
+    "actorEmail": "admin@npncarehospital.com",
+    "role": "SUPER_ADMIN",
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.8875",
+    "message": "User signed in successfully."
+  }
+]

@@ -1,0 +1,266 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  HOSPITAL_ADMIN
+  DOCTOR
+  RECEPTIONIST
+  PATIENT
+  CONTENT_MANAGER
+}
+
+enum AgreementStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  DOCTOR_REVIEW
+  APPROVED
+  REJECTED
+  NEED_REVISION
+}
+
+enum AppointmentStatus {
+  RECEIVED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  FOLLOW_UP
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String
+  email         String         @unique
+  passwordHash  String?
+  phone         String?
+  role          Role           @default(PATIENT)
+  active        Boolean        @default(true)
+  twoFactorEnabled Boolean     @default(false)
+  twoFactorSecret  String?
+  failedLoginCount Int         @default(0)
+  lastLoginAt   DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  doctorProfile Doctor?
+  patient       Patient?
+  posts         BlogPost[]
+  loginHistory  LoginHistory[]
+  auditLogs     AuditLog[]
+}
+
+model Patient {
+  id           String        @id @default(cuid())
+  userId       String        @unique
+  age          Int?
+  gender       String?
+  address      String?
+  language     String?
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  appointments Appointment[]
+  reports      MedicalReport[]
+  invoices     Invoice[]
+}
+
+model Doctor {
+  id             String        @id @default(cuid())
+  userId         String?       @unique
+  name           String
+  qualification  String
+  experience     String
+  specialization String
+  languages      String
+  photoUrl        String?
+  isFeatured      Boolean       @default(false)
+  user            User?         @relation(fields: [userId], references: [id])
+  appointments    Appointment[]
+}
+
+model Department {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  slug        String      @unique
+  summary     String
+  description String?
+  treatments  Treatment[]
+}
+
+model Treatment {
+  id           String        @id @default(cuid())
+  departmentId String?
+  title        String
+  slug         String        @unique
+  summary      String
+  details      String
+  imageUrl     String?
+  seoTitle     String?
+  seoDesc      String?
+  department   Department?   @relation(fields: [departmentId], references: [id])
+  appointments Appointment[]
+}
+
+model Appointment {
+  id          String            @id @default(cuid())
+  patientId   String?
+  doctorId    String?
+  treatmentId String?
+  name        String
+  age         Int
+  gender      String
+  phone       String
+  email       String?
+  date        DateTime
+  time        String
+  status      AppointmentStatus @default(RECEIVED)
+  notes       String?
+  createdAt   DateTime          @default(now())
+  patient     Patient?          @relation(fields: [patientId], references: [id])
+  doctor      Doctor?           @relation(fields: [doctorId], references: [id])
+  treatment   Treatment?        @relation(fields: [treatmentId], references: [id])
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  authorId    String?
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  category    String
+  tags        String[]
+  imageUrl    String?
+  seoTitle    String?
+  seoDesc     String?
+  published   Boolean  @default(false)
+  publishedAt DateTime?
+  updatedAt   DateTime @updatedAt
+  author      User?    @relation(fields: [authorId], references: [id])
+}
+
+model MediaAsset {
+  id        String   @id @default(cuid())
+  title     String
+  type      String
+  url       String?
+  storageKey String?
+  mimeType  String?
+  size      Int?
+  category  String
+  altText   String?
+  public    Boolean  @default(false)
+  uploadedById String?
+  createdAt DateTime @default(now())
+}
+
+model DigitalAgreement {
+  id                  String          @id @default(cuid())
+  agreementNo         String          @unique
+  verificationToken   String          @unique
+  version             Int             @default(1)
+  status              AgreementStatus @default(SUBMITTED)
+  encryptedPayload    String
+  payloadIv           String
+  payloadTag          String
+  signatureHash       String?
+  approvedAt          DateTime?
+  approvedById        String?
+  lockedAt            DateTime?
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  versions            AgreementVersion[]
+}
+
+model AgreementVersion {
+  id            String   @id @default(cuid())
+  agreementId   String
+  version       Int
+  encryptedPayload String
+  payloadIv     String
+  payloadTag    String
+  createdById   String?
+  createdAt     DateTime @default(now())
+  agreement     DigitalAgreement @relation(fields: [agreementId], references: [id], onDelete: Cascade)
+
+  @@unique([agreementId, version])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  actorEmail String?
+  role       String?
+  action     String
+  targetType String?
+  targetId   String?
+  ip         String?
+  userAgent  String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  actor      User?    @relation(fields: [actorId], references: [id])
+}
+
+model LoginHistory {
+  id        String   @id @default(cuid())
+  userId    String?
+  email     String
+  success   Boolean
+  ip        String?
+  userAgent String?
+  reason    String?
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model Testimonial {
+  id        String  @id @default(cuid())
+  name      String
+  condition String
+  quote     String
+  videoUrl  String?
+  rating    Int     @default(5)
+  approved  Boolean @default(false)
+}
+
+model Faq {
+  id        String  @id @default(cuid())
+  question  String
+  answer    String
+  category  String?
+  sortOrder Int     @default(0)
+  published Boolean @default(true)
+}
+
+model MedicalReport {
+  id        String   @id @default(cuid())
+  patientId String
+  title     String
+  fileUrl   String
+  createdAt DateTime @default(now())
+  patient   Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model Invoice {
+  id        String   @id @default(cuid())
+  patientId String
+  amount    Decimal
+  status    String
+  fileUrl   String?
+  createdAt DateTime @default(now())
+  patient   Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model SeoEntry {
+  id          String   @id @default(cuid())
+  path        String   @unique
+  title       String
+  description String
+  canonical   String?
+  ogImage     String?
+  schemaJson  Json?
+  updatedAt   DateTime @updatedAt
+}
