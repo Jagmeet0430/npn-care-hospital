@@ -51,7 +51,7 @@ export default async function GalleryPage() {
 
       {galleryImages.length ? (
         <Section title="Hospital Photos">
-          <div className="hospital-photo-grid">
+          <div className="hospital-photo-grid gallery-swipe-grid">
             {galleryImages.map((image) => (
               <article className="hospital-photo-card" key={image.id}>
                 <img alt={image.alt} src={image.src} />
@@ -65,7 +65,7 @@ export default async function GalleryPage() {
       ) : null}
 
       <Section title="Photo Categories">
-        <div className="grid grid-4">
+        <div className="grid grid-4 gallery-swipe-grid">
           {gallery.map((item) => {
             const image = categoryImages.get(item);
             return (
@@ -78,7 +78,7 @@ export default async function GalleryPage() {
       </Section>
 
       <Section className="band" title="Facility Highlights" text={homepage.facilitiesText}>
-        <div className="grid grid-4">
+        <div className="grid grid-4 gallery-swipe-grid">
           {facilities.map((facility) => (
             <article className="card" key={facility.name}>
               <h3>{facility.name}</h3>
@@ -89,7 +89,7 @@ export default async function GalleryPage() {
       </Section>
 
       <Section eyebrow="Video Gallery" title={homepage.videoTitle}>
-        <div className="grid grid-3">
+        <div className="grid grid-3 gallery-swipe-grid">
           {videos.map((video) => (
             <a
               className="video-tile"

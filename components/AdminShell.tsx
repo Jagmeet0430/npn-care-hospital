@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import { AdminLogoutButton } from "@/components/AdminLogoutButton";
 
 const adminNavItems = [
@@ -29,10 +31,19 @@ const adminNavItems = [
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
   return (
     <section className="dashboard-shell">
-      <aside className="sidebar">
+      <button className="admin-sidebar-toggle" type="button" onClick={() => setOpen(true)} aria-label="Open admin menu">
+        <Menu size={20} />
+        Admin Menu
+      </button>
+      {open ? <button className="admin-sidebar-backdrop" type="button" aria-label="Close admin menu" onClick={() => setOpen(false)} /> : null}
+      <aside className={open ? "sidebar open" : "sidebar"}>
+        <button className="admin-sidebar-close" type="button" onClick={() => setOpen(false)} aria-label="Close admin menu">
+          <X size={20} />
+        </button>
         <Link className="brand" href="/admin">
           <span className="brand-mark">N</span>
           <span>
@@ -42,7 +53,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         </Link>
         <nav aria-label="Admin navigation">
           {adminNavItems.map((item) => (
-            <Link className={pathname === item.href ? "active" : ""} href={item.href} key={item.href}>
+            <Link className={pathname === item.href ? "active" : ""} href={item.href} key={item.href} onClick={() => setOpen(false)}>
               {item.label}
             </Link>
           ))}
