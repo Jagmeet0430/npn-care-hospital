@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Ambulance, Mail, MapPin, Phone } from "lucide-react";
+import { Ambulance, Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
 import { HealthAssistant } from "@/components/HealthAssistant";
 import { JsonLd } from "@/components/JsonLd";
 import { IntroAnimation, PageLoadingBar, PageTransition } from "@/components/Motion";
@@ -101,6 +101,20 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <Ambulance size={17} />
                 {hospital.emergency}
               </a>
+              <div className="footer-social">
+                <span>Follow care updates</span>
+                <div>
+                  <a href={hospital.facebook} target="_blank" rel="noreferrer" aria-label="Open Facebook">
+                    <Facebook size={18} />
+                  </a>
+                  <a href={hospital.instagram} target="_blank" rel="noreferrer" aria-label="Open Instagram">
+                    <Instagram size={18} />
+                  </a>
+                  <a href={hospital.youtube} target="_blank" rel="noreferrer" aria-label="Open YouTube">
+                    <Youtube size={18} />
+                  </a>
+                </div>
+              </div>
             </div>
             <div>
               <h3>Visit</h3>

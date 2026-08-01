@@ -382,7 +382,7 @@ export function getDefaultCmsContent(): CmsContent {
       conditionText: "Patients can start from common symptoms or disease areas, then speak with a doctor before beginning any treatment plan.",
       treatmentsTitle: "Condition-focused treatment cards for fast understanding.",
       treatmentsText: "Patients can browse by condition, understand the pathway, and request the right appointment quickly.",
-      doctorsTitle: "Doctor profiles from the pamphlet, presented professionally.",
+      doctorsTitle: "Doctor profiles",
       journeyTitle: "A guided path from first call to long-term wellness.",
       storiesTitle: "Real outcomes presented with dignity and clarity.",
       galleryTitle: "Types of facilities, and community presence.",

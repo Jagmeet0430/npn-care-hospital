@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import {
-  Ambulance,
   Baby,
   Bone,
   Brain,
@@ -15,14 +14,12 @@ import {
   ChevronDown,
   ChevronRight,
   Droplets,
-  Facebook,
   FileQuestion,
   FileSignature,
   HeartPulse,
   Home,
   Images,
   Info,
-  Instagram,
   Leaf,
   LogIn,
   Menu,
@@ -37,7 +34,6 @@ import {
   Users,
   Waves,
   X,
-  Youtube,
   type LucideIcon
 } from "lucide-react";
 import {
@@ -261,7 +257,7 @@ export function SiteHeader() {
               <Search size={20} />
             </Link>
             <Link className="header-pill-action emergency-action" href={`tel:${displayHospital.emergency}`}>
-              <Ambulance size={17} />
+              <Phone size={17} />
               <span>Emergency</span>
             </Link>
             <Link className="header-pill-action call-action" href={`tel:${displayHospital.phone}`}>
@@ -412,7 +408,7 @@ export function SiteHeader() {
                 Book Appointment
               </Link>
               <Link className="button button-urgent" href={`tel:${displayHospital.emergency}`}>
-                <Ambulance size={18} />
+                <Phone size={18} />
                 Emergency Call
               </Link>
               <Link className="button button-quiet" href={`https://wa.me/${displayHospital.whatsapp.replace(/\D/g, "")}`}>
@@ -421,20 +417,6 @@ export function SiteHeader() {
               </Link>
             </div>
 
-            <div className="drawer-footer">
-              <span>Follow care updates</span>
-              <div>
-                <a href={displayHospital.facebook} target="_blank" rel="noreferrer" aria-label="Open Facebook">
-                  <Facebook size={18} />
-                </a>
-                <a href={displayHospital.instagram} target="_blank" rel="noreferrer" aria-label="Open Instagram">
-                  <Instagram size={18} />
-                </a>
-                <a href={displayHospital.youtube} target="_blank" rel="noreferrer" aria-label="Open YouTube">
-                  <Youtube size={18} />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       ) : null}
