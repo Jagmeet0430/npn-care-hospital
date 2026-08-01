@@ -217,13 +217,23 @@ model LoginHistory {
 }
 
 model Testimonial {
-  id        String  @id @default(cuid())
-  name      String
-  condition String
-  quote     String
-  videoUrl  String?
-  rating    Int     @default(5)
-  approved  Boolean @default(false)
+  id           String   @id @default(cuid())
+  patientName  String
+  patientPhoto String?
+  city         String?
+  doctorName   String?
+  treatment    String
+  review       String
+  rating       Int      @default(5)
+  beforeImage  String?
+  afterImage   String?
+  video        String?
+  featured     Boolean  @default(false)
+  published    Boolean  @default(false)
+  displayOrder Int      @default(0)
+  consent      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Faq {

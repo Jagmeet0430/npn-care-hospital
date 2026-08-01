@@ -11,17 +11,28 @@ import {
   UserRound
 } from "lucide-react";
 import { AdminAgreementManager } from "@/components/AdminAgreementManager";
+import { AdminAiManager } from "@/components/AdminAiManager";
 import { AdminAppointmentManager } from "@/components/AdminAppointmentManager";
+import { AdminBlogManager } from "@/components/AdminBlogManager";
+import { AdminCareerApplications } from "@/components/AdminCareerApplications";
 import { AdminCmsEditor } from "@/components/AdminCmsEditor";
 import { AdminGalleryUploader } from "@/components/AdminGalleryUploader";
+import { AdminTestimonialsManager } from "@/components/AdminTestimonialsManager";
+import { AdminVideoManager } from "@/components/AdminVideoManager";
 import { CmsIcon } from "@/components/CmsIcon";
 import { getAppointments } from "@/lib/appointments";
 import { getAgreements } from "@/lib/agreements";
+import { getAssistantAnalytics, getAssistantConversations, getAssistantDocuments } from "@/lib/ai-assistant";
+import { getCareerApplications } from "@/lib/careers";
 import { getCmsContent } from "@/lib/cms";
+import { prisma } from "@/lib/prisma";
+import { getTestimonials } from "@/lib/testimonials";
 
 export const adminSectionSlugs = [
   "appointments",
   "agreements",
+  "careers",
+  "ai-assistant",
   "doctors",
   "departments",
   "facilities",
@@ -30,7 +41,6 @@ export const adminSectionSlugs = [
   "gallery",
   "videos",
   "testimonials",
-  "reviews",
   "faqs",
   "seo",
   "analytics",
@@ -70,14 +80,44 @@ function AdminSection({
   );
 }
 
+async function getLiveUserCount() {
+  if (!process.env.DATABASE_URL) return 1;
+
+  try {
+    return await prisma.user.count({ where: { active: true } });
+  } catch {
+    return 1;
+  }
+}
+
+function getSeoPageCount(content: Awaited<ReturnType<typeof getCmsContent>>) {
+  const customerPages = 13;
+  return customerPages + content.treatments.length + content.blogPosts.length;
+}
+
 export async function AdminDashboardContent() {
   const content = await getCmsContent();
   const appointments = await getAppointments();
   const agreements = await getAgreements();
+  const careerApplications = await getCareerApplications();
+  const aiConversations = await getAssistantConversations();
+  const testimonials = await getTestimonials();
+  const userCount = await getLiveUserCount();
+  const { blogPosts, doctors, galleryImages, treatments, videoTitles } = content;
 
   const modules = [
-    ...content.adminModules,
-    { title: "Agreements", value: String(agreements.length), iconKey: "fileHeart" as const }
+    { title: "Appointments", value: String(appointments.length), iconKey: "calendar" as const },
+    { title: "Doctors", value: String(doctors.length), iconKey: "stethoscope" as const },
+    { title: "Treatments", value: String(treatments.length), iconKey: "leaf" as const },
+    { title: "Gallery Images", value: String(galleryImages.length), iconKey: "building" as const },
+    { title: "Videos", value: String(videoTitles.length), iconKey: "video" as const },
+    { title: "Testimonials", value: String(testimonials.length), iconKey: "message" as const },
+    { title: "Blog Posts", value: String(blogPosts.length), iconKey: "fileHeart" as const },
+    { title: "SEO Pages", value: String(getSeoPageCount(content)), iconKey: "check" as const },
+    { title: "Users", value: String(userCount), iconKey: "users" as const },
+    { title: "Agreements", value: String(agreements.length), iconKey: "fileHeart" as const },
+    { title: "Career Applications", value: String(careerApplications.length), iconKey: "users" as const },
+    { title: "AI Conversations", value: String(aiConversations.length), iconKey: "message" as const }
   ];
 
   return (
@@ -108,7 +148,7 @@ export async function AdminDashboardContent() {
           <Search size={17} />
           Search CMS
         </span>
-        <input placeholder="Search appointments, doctors, treatments, media, reviews, or SEO pages" />
+        <input placeholder="Search appointments, doctors, treatments, media, testimonials, or SEO pages" />
       </label>
 
       <div className="grid grid-4" style={{ marginTop: 24 }}>
@@ -125,23 +165,22 @@ export async function AdminDashboardContent() {
 
       <div className="grid grid-3" style={{ marginTop: 24 }}>
         <article className="card">
-          <Bell size={22} color="#227a59" />
+          <Bell size={22} color="#0F172A" />
           <h3>Latest appointment</h3>
           <p>{appointments[0] ? `${appointments[0].name} requested ${appointments[0].treatment}.` : "No appointments yet."}</p>
         </article>
         <article className="card">
-          <FileText size={22} color="#227a59" />
+          <FileText size={22} color="#0F172A" />
           <h3>Agreement queue</h3>
           <p>{agreements.length ? `${agreements.length} agreement records available for review.` : "No agreements submitted yet."}</p>
         </article>
         <article className="card">
-          <BarChart3 size={22} color="#227a59" />
+          <BarChart3 size={22} color="#0F172A" />
           <h3>Live customer sync</h3>
           <p>Use Settings for CMS edits. Public pages update from the same content source after refresh.</p>
         </article>
       </div>
 
-      <AdminCmsEditor initialSection="adminModules" focusOnly />
     </section>
   );
 }
@@ -150,6 +189,11 @@ export async function AdminSectionContent({ section }: { section: string }) {
   const content = await getCmsContent();
   const appointments = await getAppointments();
   const agreements = await getAgreements();
+  const careerApplications = await getCareerApplications();
+  const aiConversations = await getAssistantConversations();
+  const aiDocuments = await getAssistantDocuments();
+  const aiAnalytics = await getAssistantAnalytics();
+  const managedTestimonials = await getTestimonials();
   const {
     blogPosts,
     cmsAreas,
@@ -159,7 +203,6 @@ export async function AdminSectionContent({ section }: { section: string }) {
     faqs,
     gallery,
     galleryImages,
-    testimonials,
     treatments,
     videoTitles
   } = content;
@@ -168,13 +211,15 @@ export async function AdminSectionContent({ section }: { section: string }) {
     { label: "Website Pages", value: "36", iconKey: "building" as const },
     { label: "Appointments", value: String(appointments.length), iconKey: "calendar" as const },
     { label: "Agreements", value: String(agreements.length), iconKey: "fileHeart" as const },
+    { label: "Job Applications", value: String(careerApplications.length), iconKey: "users" as const },
+    { label: "AI Conversations", value: String(aiConversations.length), iconKey: "message" as const },
     { label: "Treatments", value: String(treatments.length), iconKey: "leaf" as const },
     { label: "Doctors", value: String(doctors.length), iconKey: "stethoscope" as const }
   ];
 
   const users = [
-    { name: "Super Admin", email: "admin@npncarehospital.com", role: "SUPER_ADMIN", status: "Active" },
-    { name: "Care Desk", email: "care@npncarehospital.com", role: "ADMIN", status: "Active" },
+    { name: "Super Admin", email: "npncarehospital786@gmail.com", role: "SUPER_ADMIN", status: "Active" },
+    { name: "Care Desk", email: "npncarehospital786@gmail.com", role: "ADMIN", status: "Active" },
     { name: "Doctor Team", email: "doctors@npncarehospital.com", role: "DOCTOR", status: "Pending setup" }
   ];
 
@@ -188,12 +233,33 @@ export async function AdminSectionContent({ section }: { section: string }) {
 
   if (section === "agreements") {
     return (
-      <AdminSection
-        eyebrow="Agreement Management"
-        title="Review digital patient agreements"
-        text="Approve, reject, request changes, assign doctors, download, print, and track every agreement from one secure workflow."
-      >
+      <section className="admin-section page-section agreement-section-shell">
         <AdminAgreementManager agreements={agreements} departments={departments} doctors={doctors} />
+      </section>
+    );
+  }
+
+  if (section === "careers") {
+    return (
+      <AdminSection
+        eyebrow="Careers"
+        title="Manage job applications"
+        text="Review applications, preview resumes, change status, export CSV, and manage hiring decisions from one protected admin module."
+      >
+        <AdminCareerApplications applications={careerApplications} />
+        <AdminCmsEditor initialSection="careers" focusOnly />
+      </AdminSection>
+    );
+  }
+
+  if (section === "ai-assistant") {
+    return (
+      <AdminSection
+        eyebrow="AI Management"
+        title="Manage AI health assistant"
+        text="Train approved knowledge, view encrypted conversations, monitor analytics, and identify questions that need staff follow-up."
+      >
+        <AdminAiManager conversations={aiConversations} documents={aiDocuments} analytics={aiAnalytics} />
       </AdminSection>
     );
   }
@@ -265,32 +331,31 @@ export async function AdminSectionContent({ section }: { section: string }) {
 
   if (section === "blogs") {
     return (
-      <AdminSection eyebrow="Blogs" title="Manage health blog content">
-        <div className="grid grid-3">
-          {blogPosts.map((post) => (
-            <article className="blog-card" key={post.slug}>
-              <span className="eyebrow">{post.category}</span>
-              <h3>{post.title}</h3>
-              <p>{post.excerpt}</p>
-              <strong>{post.readTime}</strong>
-            </article>
-          ))}
-        </div>
-        <AdminCmsEditor initialSection="blogPosts" focusOnly />
+      <AdminSection
+        eyebrow="Blogs"
+        title="Manage health blog content"
+        text="Create articles, publish to the customer Knowledge Center, and prepare social media posts from one admin workflow."
+      >
+        <AdminBlogManager initialContent={content} />
       </AdminSection>
     );
   }
 
   if (section === "gallery") {
+    const categoryImages = new Map(galleryImages.filter((image) => image.category).map((image) => [image.category as string, image]));
+
     return (
       <AdminSection eyebrow="Gallery" title="Manage gallery categories">
-        <AdminGalleryUploader images={galleryImages} />
+        <AdminGalleryUploader images={galleryImages} categories={gallery} />
         <div className="grid grid-3">
-          {gallery.map((item) => (
-            <div className="media-tile" key={item}>
-              {item}
-            </div>
-          ))}
+          {gallery.map((item) => {
+            const image = categoryImages.get(item);
+            return (
+              <div className="media-tile" key={item} style={image ? { backgroundImage: `linear-gradient(145deg, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.18)), url(${image.src})` } : undefined}>
+                {item}
+              </div>
+            );
+          })}
         </div>
         <AdminCmsEditor initialSection="gallery" focusOnly />
       </AdminSection>
@@ -299,35 +364,16 @@ export async function AdminSectionContent({ section }: { section: string }) {
 
   if (section === "videos") {
     return (
-      <AdminSection eyebrow="Videos" title="Manage video library">
-        <div className="grid grid-3">
-          {videoTitles.map((item) => (
-            <article className="card" key={item}>
-              <CmsIcon iconKey="video" />
-              <h3>{item}</h3>
-              <p>Video title is CMS editable. Connect upload storage later for file-based video management.</p>
-            </article>
-          ))}
-        </div>
-        <AdminCmsEditor initialSection="videoTitles" focusOnly />
+      <AdminSection eyebrow="Videos" title="Manage video library" text="Add real video links, thumbnails, categories, and patient-friendly descriptions.">
+        <AdminVideoManager initialContent={content} />
       </AdminSection>
     );
   }
 
-  if (section === "testimonials" || section === "reviews") {
+  if (section === "testimonials") {
     return (
-      <AdminSection eyebrow={section === "reviews" ? "Reviews" : "Testimonials"} title={section === "reviews" ? "Manage ratings and reviews" : "Manage patient stories"}>
-        <div className="grid grid-3">
-          {testimonials.map((story) => (
-            <article className="card" key={story.name}>
-              {section === "reviews" ? <span className="status">5 star</span> : null}
-              <h3>{story.name}</h3>
-              <p>{story.condition}</p>
-              <p>&quot;{story.quote}&quot;</p>
-            </article>
-          ))}
-        </div>
-        <AdminCmsEditor initialSection="testimonials" focusOnly />
+      <AdminSection eyebrow="Testimonials" title="Manage patient stories">
+        <AdminTestimonialsManager testimonials={managedTestimonials} doctors={doctors} treatments={treatments} />
       </AdminSection>
     );
   }
@@ -354,7 +400,7 @@ export async function AdminSectionContent({ section }: { section: string }) {
         <div className="grid grid-4">
           {["Dynamic Meta Tags", "Schema Markup", "XML Sitemap", "Canonical URLs", "Open Graph", "Twitter Cards", "Robots.txt", "Treatment SEO Pages"].map((item) => (
             <article className="card" key={item}>
-              <FileText size={22} color="#227a59" />
+              <FileText size={22} color="#0F172A" />
               <h3>{item}</h3>
               <p>Active. Edit page text and treatment slugs through the Settings CMS editor.</p>
             </article>
@@ -425,7 +471,7 @@ export async function AdminSectionContent({ section }: { section: string }) {
         <div className="grid grid-4">
           {items.map((item) => (
             <article className="card" key={item}>
-              {section === "roles" ? <UserRound size={22} color="#227a59" /> : <LockKeyhole size={22} color="#227a59" />}
+              {section === "roles" ? <UserRound size={22} color="#0F172A" /> : <LockKeyhole size={22} color="#0F172A" />}
               <h3>{item}</h3>
               <p>{section === "roles" ? "Role is ready for authentication and permission wiring." : "Permission-ready area for role-based access."}</p>
             </article>
@@ -441,7 +487,7 @@ export async function AdminSectionContent({ section }: { section: string }) {
         <div className="grid grid-3">
           {cmsAreas.map((area) => (
             <article className="card" key={area}>
-              <ShieldCheck size={22} color="#0f8a55" />
+              <ShieldCheck size={22} color="#0F172A" />
               <h3>{area}</h3>
               <p>Editable through Live Website CMS below. Changes update the customer website.</p>
             </article>
@@ -457,7 +503,7 @@ export async function AdminSectionContent({ section }: { section: string }) {
         <div className="grid grid-3">
           {appointments.slice(0, 3).map((appointment) => (
             <article className="card" key={appointment.id}>
-              <Bell size={22} color="#227a59" />
+              <Bell size={22} color="#0F172A" />
               <h3>{appointment.name}</h3>
               <p>{appointment.treatment} appointment received on {formatDate(appointment.createdAt)}.</p>
             </article>

@@ -1,0 +1,7 @@
+{
+  "encrypted": true,
+  "algorithm": "aes-256-gcm",
+  "iv": "7fTgS7pmAYsqCZ3y",
+  "tag": "KR3l4pNkL/wquqsv/FV4WQ==",
+  "payload": "fCo="
+}

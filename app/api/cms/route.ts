@@ -3,6 +3,7 @@ import { appendAuditLog } from "@/lib/audit";
 import { getCmsContent, saveCmsContent, type CmsContent } from "@/lib/cms";
 import { sanitizeObject } from "@/lib/sanitize";
 import { requirePermission } from "@/lib/server-auth";
+import { syncTestimonialsFromCms } from "@/lib/testimonials";
 
 export async function GET() {
   const content = await getCmsContent();
@@ -22,6 +23,9 @@ export async function PUT(request: Request) {
   }
 
   const content = await saveCmsContent(sanitizeObject(body));
+  if (request.headers.get("x-cms-section") === "testimonials" && Array.isArray(content.testimonials)) {
+    await syncTestimonialsFromCms(content.testimonials);
+  }
   await appendAuditLog({
     action: "CMS_UPDATED",
     actorId: authorization.session.user.id,

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { appendAuditLog } from "@/lib/audit";
 import { agreementStatusValues } from "@/lib/agreement-shared";
-import { getAgreementById, updateAgreement } from "@/lib/agreements";
+import { deleteAgreement, getAgreementById, updateAgreement } from "@/lib/agreements";
 import { requirePermission } from "@/lib/server-auth";
 
 type AgreementRouteProps = {
@@ -61,6 +61,32 @@ export async function PATCH(request: Request, { params }: AgreementRouteProps) {
     targetType: "Agreement",
     targetId: agreement.agreementNo,
     message: `Agreement ${agreement.agreementNo} updated to ${agreement.status}.`
+  });
+
+  return NextResponse.json({ ok: true, agreement });
+}
+
+export async function DELETE(request: Request, { params }: AgreementRouteProps) {
+  const authorization = await requirePermission("agreements:delete", request);
+  if (!authorization.authorized) {
+    return authorization.response;
+  }
+
+  const { id } = await params;
+  const agreement = await deleteAgreement(id, authorization.session.user.email ?? "Admin");
+
+  if (!agreement) {
+    return NextResponse.json({ ok: false, message: "Agreement not found" }, { status: 404 });
+  }
+
+  await appendAuditLog({
+    action: "AGREEMENT_DELETED",
+    actorId: authorization.session.user.id,
+    actorEmail: authorization.session.user.email ?? undefined,
+    role: authorization.session.user.role,
+    targetType: "Agreement",
+    targetId: agreement.agreementNo,
+    message: `Agreement ${agreement.agreementNo} removed from active queue.`
   });
 
   return NextResponse.json({ ok: true, agreement });

@@ -69,7 +69,7 @@ export function AdminLoginForm({ nextPath }: AdminLoginFormProps) {
                 autoComplete="email"
                 autoFocus
                 onChange={(event) => setEmail(event.target.value)}
-                placeholder="admin@npncarehospital.com"
+                placeholder="npncarehospital786@gmail.com"
                 required
                 type="email"
                 value={email}

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const agreementStatusValues = ["Submitted", "Under Review", "Doctor Review", "Approved", "Rejected", "Need Revision"] as const;
+export const agreementStatusValues = ["Submitted", "Under Review", "Doctor Review", "Approved", "Rejected", "Need Revision", "Expired"] as const;
 export type AgreementStatus = (typeof agreementStatusValues)[number];
 
 export const agreementDocumentSchema = z.object({

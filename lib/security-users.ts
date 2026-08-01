@@ -14,13 +14,13 @@ export type AuthUser = {
   twoFactorSecret?: string | null;
 };
 
-const defaultAdminHash = "$2b$12$2surz94QOSos3/i1KFMxG./OJtTNXwL5G59imTTv2m.nBXOckD0bq";
+const defaultAdminHash = "$2b$12$OWdPHAn0yGxRwQ/2hPleCumyoGNTM8PKXcfDxjxo1cLhb7LyuMzMe";
 
 function fallbackAdmin(): AuthUser {
   return {
     id: "local-super-admin",
     name: process.env.ADMIN_NAME ?? "Super Admin",
-    email: process.env.ADMIN_EMAIL ?? "admin@npncarehospital.com",
+    email: process.env.ADMIN_EMAIL ?? "npncarehospital786@gmail.com",
     role: "SUPER_ADMIN",
     passwordHash: process.env.ADMIN_PASSWORD_HASH ?? defaultAdminHash,
     active: true,

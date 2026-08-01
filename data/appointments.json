@@ -1,44 +1,7 @@
-[
-  {
-    "id": "bb6bf644-25da-4f10-89fa-224d4f6daadf",
-    "status": "received",
-    "createdAt": "2026-07-30T04:16:40.704Z",
-    "name": "Jagmeet Saini",
-    "age": 22,
-    "gender": "Male",
-    "phone": "+91 98765 43210",
-    "email": "sainijagmeet0921@gmail.com",
-    "treatment": "Back Pain",
-    "doctor": "Dr. Sukhwinder Singh",
-    "date": "2026-08-02",
-    "time": "Morning"
-  },
-  {
-    "id": "appt_seed_1",
-    "name": "Ramesh Kumar",
-    "age": 58,
-    "gender": "Male",
-    "phone": "9876543210",
-    "email": "ramesh@example.com",
-    "treatment": "Joint Pain",
-    "doctor": "Dr. Sukhwinder Singh",
-    "date": "2026-07-29",
-    "time": "Morning",
-    "status": "confirmed",
-    "createdAt": "2026-07-28T10:30:00.000Z"
-  },
-  {
-    "id": "appt_seed_2",
-    "name": "Meena Shah",
-    "age": 45,
-    "gender": "Female",
-    "phone": "9876543211",
-    "email": "meena@example.com",
-    "treatment": "Diabetes Care",
-    "doctor": "Dr. Raj Kumari",
-    "date": "2026-07-29",
-    "time": "Afternoon",
-    "status": "received",
-    "createdAt": "2026-07-28T12:00:00.000Z"
-  }
-]
+{
+  "encrypted": true,
+  "algorithm": "aes-256-gcm",
+  "iv": "ihQ22udYv/Qaxq2U",
+  "tag": "OrjQxIp3U/tn6d7bTXkstA==",
+  "payload": "BbQsGh/iWlJLxLDMhwQyknEtRur/ic/WsKWdOdY60a8GBc0LRbaI6or7DV+7roez3aYa4wOtBI+v2e964uZFBSXcAYpx+YXj1KyIVMA83EAoEzckIRidAxaQMUJjPn3utaA531f9flKdK887243QBM9rsNPN2QBjtcHpf7jFlcptHgy/X4XpznlVzze33WxPYF0OCIoyLWw+KCuJrl36XLtf0NfeopX6it8GTKiL5I6raSUeIkvW8nrx9CejSFhU3e4XnemyYFg5N/PsxtMSQoDhC4pxCF05vghSwRWAx5B5Q+2wqb9eQfchPzEv3qkKU6ji4oMbwVCfg4ysRoTl+Tmo4IZmpI4U/O4M0d8yhGn6IW12TelEQ1hozRc5fNnaImb2sNWhgvFJzwF2hz77u69I/a3HkQ=="
+}

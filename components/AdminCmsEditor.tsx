@@ -12,6 +12,8 @@ type AdminCmsEditorProps = {
 
 const editableSections: Array<{ key: SectionKey; label: string; help: string }> = [
   { key: "hospital", label: "Hospital Info", help: "Name, phones, address, timing, registration, map query." },
+  { key: "navigation", label: "Navigation", help: "Header/menu tab labels and links shown on the customer website." },
+  { key: "footer", label: "Footer", help: "Footer description, explore links, copyright, and policy text." },
   { key: "hero", label: "Homepage Hero", help: "Main headline, buttons, location line, and intro copy." },
   { key: "homepage", label: "Homepage Text", help: "Section headings, story copy, mission, vision, and notes." },
   { key: "trustStats", label: "Statistics", help: "Public trust numbers shown on the site." },
@@ -23,12 +25,12 @@ const editableSections: Array<{ key: SectionKey; label: string; help: string }> 
   { key: "patientSchemes", label: "Schemes", help: "Free-care, insurance, assurance, and medicine notice cards." },
   { key: "conditionGroups", label: "Conditions", help: "Health concern directory from the pamphlets." },
   { key: "faqs", label: "FAQs", help: "Question and answer list on customer pages." },
-  { key: "testimonials", label: "Testimonials", help: "Patient story cards." },
-  { key: "blogPosts", label: "Blogs", help: "Blog teaser cards." },
+  { key: "testimonials", label: "Testimonials", help: "Patient story cards. Saving here syncs to the public testimonial slider." },
+  { key: "blogPosts", label: "Blogs", help: "Create, edit, delete, publish, and schedule article objects. Use slug, category, image, author, readTime, metaTitle, metaDescription, and fullContent." },
+  { key: "careers", label: "Careers Page", help: "Career hero, openings, benefits, culture, status labels, and career FAQs." },
   { key: "gallery", label: "Gallery", help: "Gallery category tiles." },
   { key: "videoTitles", label: "Videos", help: "Video library tile titles." },
   { key: "patientHindiHighlights", label: "Hindi Help", help: "Hindi patient notes shown on home and schemes pages." },
-  { key: "adminModules", label: "Admin Dashboard", help: "Dashboard module counters and labels." },
   { key: "cmsAreas", label: "CMS Areas", help: "Settings cards shown in the admin panel." }
 ];
 
@@ -78,7 +80,7 @@ export function AdminCmsEditor({ initialSection = "hospital", focusOnly = false 
       const nextContent = { ...content, [active]: parsed };
       const response = await fetch("/api/cms", {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-cms-section": active },
         body: JSON.stringify(nextContent)
       });
 
@@ -88,7 +90,7 @@ export function AdminCmsEditor({ initialSection = "hospital", focusOnly = false 
 
       const result = (await response.json()) as { content: CmsContent };
       setContent(result.content);
-      setStatus(`Saved ${activeMeta?.label ?? active}. Refresh the customer website to see it immediately.`);
+      setStatus(active === "testimonials" ? "Saved Testimonials and synced the public testimonial slider." : `Saved ${activeMeta?.label ?? active}. Refresh the customer website to see it immediately.`);
     } catch (error) {
       setStatus(error instanceof SyntaxError ? "Invalid JSON. Please fix the section before saving." : error instanceof Error ? error.message : "Could not save CMS content.");
     } finally {

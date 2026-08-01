@@ -70,6 +70,8 @@ export type AgreementRecord = AgreementInput & {
   submittedAt: string;
   approvalDate?: string;
   lockedAt?: string;
+  deletedAt?: string;
+  deletedBy?: string;
   version: number;
   verificationToken: string;
   verificationUrl: string;
@@ -119,18 +121,49 @@ async function saveAgreements(agreements: AgreementRecord[]) {
   await writeFile(agreementPath, `${JSON.stringify(encryptJson(agreements), null, 2)}\n`, "utf8");
 }
 
-export async function getAgreements(): Promise<AgreementRecord[]> {
+export async function getAgreements(includeDeleted = false): Promise<AgreementRecord[]> {
   noStore();
 
   try {
     const raw = await readFile(agreementPath, "utf8");
     const parsed = JSON.parse(raw) as unknown;
     const agreements = isEncryptedPayload(parsed) ? decryptJson<AgreementRecord[]>(parsed) : (parsed as AgreementRecord[]);
-    return agreements.map(normalizeAgreement);
+    const normalized = agreements.map(normalizeAgreement);
+    return includeDeleted ? normalized : normalized.filter((agreement) => !agreement.deletedAt);
   } catch {
     await saveAgreements([]);
     return [];
   }
+}
+
+export async function deleteAgreement(
+  id: string,
+  actor = "Admin"
+): Promise<AgreementRecord | undefined> {
+  const agreements = await getAgreements(true);
+  const index = agreements.findIndex((agreement) => agreement.id === id || agreement.agreementNo === id);
+  if (index === -1) return undefined;
+
+  const now = new Date().toISOString();
+  const agreement = agreements[index];
+  const deletedAgreement: AgreementRecord = {
+    ...agreement,
+    deletedAt: now,
+    deletedBy: actor,
+    auditLog: [
+      {
+        at: now,
+        actor,
+        action: "Soft Deleted",
+        note: "Agreement removed from active review queue."
+      },
+      ...agreement.auditLog
+    ]
+  };
+
+  agreements[index] = deletedAgreement;
+  await saveAgreements(agreements);
+  return deletedAgreement;
 }
 
 export async function getAgreementById(id: string): Promise<AgreementRecord | undefined> {

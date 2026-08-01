@@ -3,10 +3,11 @@ import { getCmsContent } from "@/lib/cms";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://npncarehospital.com";
-  const { treatments } = await getCmsContent();
+  const { blogPosts, treatments } = await getCmsContent();
   const staticPages = [
     "",
     "/agreement",
+    "/careers",
     "/about",
     "/treatments",
     "/doctors",
@@ -35,6 +36,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.85
+    })),
+    ...blogPosts.map((post) => ({
+      url: `${base}/blog/${post.slug}`,
+      lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.72
     }))
   ];
 }

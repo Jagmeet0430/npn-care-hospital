@@ -13,6 +13,7 @@ function applySecurityHeaders(response: NextResponse) {
     "img-src 'self' data: blob:",
     "font-src 'self' data:",
     `connect-src 'self'${isProduction ? "" : " ws: wss:"}`,
+    "frame-src 'self' https://www.google.com https://maps.google.com",
     "frame-ancestors 'self'",
     "base-uri 'self'",
     "form-action 'self'",

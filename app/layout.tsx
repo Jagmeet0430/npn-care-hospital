@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Ambulance, Mail, MapPin, Phone } from "lucide-react";
+import { HealthAssistant } from "@/components/HealthAssistant";
 import { JsonLd } from "@/components/JsonLd";
+import { IntroAnimation, PageLoadingBar, PageTransition } from "@/components/Motion";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getCmsContent } from "@/lib/cms";
+import { getPublishedTestimonials } from "@/lib/testimonials";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -45,14 +48,20 @@ export const dynamic = "force-dynamic";
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const content = await getCmsContent();
-  const { hospital } = content;
+  const testimonials = await getPublishedTestimonials();
+  const { footer, hospital } = content;
 
   return (
     <html lang="en">
       <body>
-        <JsonLd content={content} />
+        <JsonLd content={content} testimonials={testimonials} />
+        <PageLoadingBar />
+        <IntroAnimation brandName={hospital.name} tagline="Compassion • Care • Excellence" />
         <SiteHeader />
-        <main>{children}</main>
+        <PageTransition>
+          <main>{children}</main>
+        </PageTransition>
+        <HealthAssistant />
         <footer className="footer">
           <div className="footer-grid">
             <div>
@@ -64,10 +73,15 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 </span>
               </Link>
               <p>Reg. No.: {hospital.registrationNo}</p>
-              <p>
-                Premium, patient-first Ayurveda, Naturopathy, Electro Homeopathy, and Integrative Healthcare for
-                families, senior citizens, insured patients, and eligible low-income families.
-              </p>
+              <p>{footer.description}</p>
+            </div>
+            <div>
+              <h3>Explore</h3>
+              {footer.exploreLinks.map((item) => (
+                <Link href={item.href} key={`${item.label}-${item.href}`}>
+                  {item.label}
+                </Link>
+              ))}
             </div>
             <div>
               <h3>Contact</h3>
@@ -98,8 +112,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             </div>
           </div>
           <div className="footer-bottom">
-            <span>Copyright {new Date().getFullYear()} {hospital.name}. All rights reserved.</span>
-            <span>Privacy | Terms | Accessibility</span>
+            <span>{footer.bottomLeft}</span>
+            <span>{footer.bottomRight}</span>
           </div>
         </footer>
       </body>

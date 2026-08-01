@@ -45,7 +45,7 @@ export default async function SchemesPage() {
             <ul className="mission-list">
               {patientHindiHighlights.map((item) => (
                 <li key={item}>
-                  <CheckCircle2 size={21} color="#0f8a55" />
+                  <CheckCircle2 size={21} color="#0F172A" />
                   {item}
                 </li>
               ))}

@@ -94,7 +94,7 @@ export default async function DoctorDashboardPage() {
           <div className="grid grid-3">
             {["Patient notes", "Treatment plans", "Recovery support"].map((item) => (
               <article className="card" key={item}>
-                <Users size={22} color="#227a59" />
+                <Users size={22} color="#0F172A" />
                 <h3>{item}</h3>
                 <p>Ready for secure login, prescription uploads, progress notes, and follow-up workflows.</p>
               </article>

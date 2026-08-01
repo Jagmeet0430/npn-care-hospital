@@ -9,10 +9,13 @@
     "secondaryPhone": "+91 90685 34783",
     "emergency": "+91 91197 44783",
     "whatsapp": "+91 90685 34783",
-    "email": "care@npncarehospital.com",
+    "email": "npncarehospital786@gmail.com",
+    "instagram": "https://www.instagram.com/n.p.n_care_hospital/",
+    "facebook": "https://www.facebook.com/search/top?q=N.P.N.%20Care%20Hospital",
+    "youtube": "https://www.youtube.com/results?search_query=N.P.N.+Care+Hospital",
     "address": "Pathak Ji Complex, Main Chauraha to Mant Road, Gorei, Iglas, Aligarh, Uttar Pradesh 202145",
     "hours": "Mon-Sat, 10:00 AM - 4:00 PM | Sunday closed",
-    "mapQuery": "Pathak Ji Complex Gorei Iglas Aligarh Uttar Pradesh 202145"
+    "mapQuery": "N.P.N. Care Hospital, Pathak Ji Complex, Main Chauraha to Mant Road, Gorei, Iglas, Aligarh, Uttar Pradesh 202145"
   },
   "hero": {
     "eyebrow": "Navel Power Naturopathy India Pvt. Ltd. | Reg. No. U86903UP2023PTC178984",
@@ -22,10 +25,157 @@
     "secondaryButton": "Talk to Doctor",
     "locationLabel": "Gorei, Iglas, Aligarh"
   },
+  "navigation": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Treatments",
+      "href": "/treatments"
+    },
+    {
+      "label": "Agreement",
+      "href": "/agreement"
+    },
+    {
+      "label": "Careers",
+      "href": "/careers"
+    },
+    {
+      "label": "Gallery",
+      "href": "/gallery"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "footer": {
+    "description": "Premium, patient-first Ayurveda, Naturopathy, Electro Homeopathy, and Integrative Healthcare for families, senior citizens, insured patients, and eligible low-income families.",
+    "exploreLinks": [
+      {
+        "label": "Careers / Apply Now",
+        "href": "/careers"
+      },
+      {
+        "label": "Digital Agreement",
+        "href": "/agreement"
+      },
+      {
+        "label": "Gallery",
+        "href": "/gallery"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "bottomLeft": "Copyright 2026 N.P.N. CARE HOSPITAL. All rights reserved.",
+    "bottomRight": "Privacy | Terms | Accessibility"
+  },
+  "careers": {
+    "heroTitle": "Join Our Team",
+    "heroText": "Build a meaningful healthcare career with a hospital focused on professional care, natural healing, and patient dignity.",
+    "primaryButton": "Apply Now",
+    "secondaryButton": "View Openings",
+    "openingsEyebrow": "Current Openings",
+    "openingsTitle": "Roles designed around patient care and professional growth.",
+    "openings": [
+      {
+        "title": "Receptionist",
+        "text": "Front desk coordination, patient guidance, calls, and appointment support."
+      },
+      {
+        "title": "Naturopathy Therapist",
+        "text": "Therapy room support, patient care routines, and wellness program assistance."
+      },
+      {
+        "title": "Patient Care Coordinator",
+        "text": "Help patients understand visits, documents, follow-ups, and care schedules."
+      },
+      {
+        "title": "Admin Executive",
+        "text": "Support records, communication, operations, and hiring coordination."
+      }
+    ],
+    "benefitsEyebrow": "Benefits",
+    "benefitsTitle": "A calm workplace with clear systems and human care.",
+    "benefits": [
+      "Calm healthcare workplace",
+      "Patient-first team culture",
+      "Training and growth support",
+      "Respectful communication",
+      "Organized digital workflow",
+      "Purpose-led natural healing"
+    ],
+    "cultureEyebrow": "Hospital Culture",
+    "cultureTitle": "Professional healthcare with natural healing values.",
+    "cultureCards": [
+      {
+        "title": "Patient dignity first",
+        "text": "Every role supports clear guidance, respectful communication, and practical help for families."
+      },
+      {
+        "title": "Modern systems",
+        "text": "Digital applications, appointment queues, content tools, and admin workflows keep the work organized."
+      }
+    ],
+    "quoteEyebrow": "Employee Voice",
+    "quoteTitle": "\"The hospital feels organized, calm, and personal.\"",
+    "quoteText": "Team members are encouraged to learn, communicate clearly, and contribute to better patient experience.",
+    "applicationEyebrow": "Application Form",
+    "applicationTitle": "Submit your job application securely.",
+    "applicationStatusTitle": "Application Status",
+    "applicationStatusText": "After submission, each applicant receives an Application ID, submitted date, and current status.",
+    "statusList": [
+      "Received",
+      "Under Review",
+      "Interview",
+      "Selected",
+      "Rejected"
+    ],
+    "faqEyebrow": "Career FAQ",
+    "faqTitle": "Answers before you apply.",
+    "faqs": [
+      {
+        "q": "Can freshers apply?",
+        "a": "Yes. Some roles are open to freshers with good communication, discipline, and willingness to learn."
+      },
+      {
+        "q": "Which resume formats are accepted?",
+        "a": "PDF, DOC, and DOCX files up to 5 MB are accepted."
+      },
+      {
+        "q": "How will I know my status?",
+        "a": "You receive an application ID after submission. The admin team reviews and updates the application status."
+      },
+      {
+        "q": "Can I apply for multiple roles?",
+        "a": "Please submit one application for the role that best matches your experience."
+      }
+    ]
+  },
   "homepage": {
     "whyEyebrow": "Why Choose Us",
     "whyTitle": "Why patients choose N.P.N. Care Hospital.",
     "whyText": "Modern care should feel easy to understand, respectful to the family, and guided by doctors who look beyond symptoms.",
+    "philosophyEyebrow": "Our Philosophy",
+    "philosophyTitle": "Professional healthcare with natural healing.",
+    "philosophyText": "N.P.N. Care Hospital believes recovery begins when patients understand their body, their reports, their daily habits, and the treatment path ahead. We combine natural therapies with experienced medical guidance so care feels calm, personal, and practical.",
+    "philosophyBullets": [
+      "Listen first, then design a care plan around the patient.",
+      "Use natural therapies responsibly with medical history and reports.",
+      "Support long-term wellness through follow-up, routines, and prevention."
+    ],
     "aboutEyebrow": "About Hospital",
     "aboutTitle": "A modern destination for natural and integrative healing.",
     "aboutLead": "N.P.N. Care Hospital brings together Ayurveda, Naturopathy, Electro Homeopathy, lifestyle guidance, and compassionate clinical review so patients can understand their health and make confident care decisions.",
@@ -52,25 +202,17 @@
     "doctorsTitle": "Doctor profiles from the pamphlet, presented professionally.",
     "journeyTitle": "A guided path from first call to long-term wellness.",
     "storiesTitle": "Real outcomes presented with dignity and clarity.",
-    "galleryTitle": "Visual proof of care, facilities, and community presence.",
+    "galleryTitle": "Types of facilities, and community presence.",
+    "facilitiesTitle": "Hospital facilities designed for calm, safe visits.",
+    "facilitiesText": "From reception to therapy rooms, every patient touchpoint is presented as a clean, comfortable, and professional healthcare environment.",
+    "toolsTitle": "Find the right next step in seconds.",
+    "toolsText": "Search doctors, match a treatment, calculate BMI, switch language, and use accessibility controls before booking.",
     "videoTitle": "Education, patient awareness, and doctor guidance.",
     "blogTitle": "SEO-ready health education for patients and families.",
     "faqTitle": "Simple answers for patients who need confidence before visiting.",
     "appointmentTitle": "A calm, fast booking experience for every patient.",
     "appointmentText": "Share your preferred treatment, doctor, date, and time. The care desk can route your request to the right department and confirm by phone or WhatsApp.",
-    "contactTitle": "Reach the hospital quickly.",
-    "philosophyEyebrow": "Our Philosophy",
-    "philosophyTitle": "Professional healthcare with natural healing.",
-    "philosophyText": "N.P.N. Care Hospital believes recovery begins when patients understand their body, their reports, their daily habits, and the treatment path ahead. We combine natural therapies with experienced medical guidance so care feels calm, personal, and practical.",
-    "philosophyBullets": [
-      "Listen first, then design a care plan around the patient.",
-      "Use natural therapies responsibly with medical history and reports.",
-      "Support long-term wellness through follow-up, routines, and prevention."
-    ],
-    "facilitiesTitle": "Hospital facilities designed for calm, safe visits.",
-    "facilitiesText": "From reception to therapy rooms, every patient touchpoint is presented as a clean, comfortable, and professional healthcare environment.",
-    "toolsTitle": "Find the right next step in seconds.",
-    "toolsText": "Search doctors, match a treatment, calculate BMI, switch language, and use accessibility controls before booking."
+    "contactTitle": "Reach the hospital quickly."
   },
   "trustStats": [
     {
@@ -90,7 +232,7 @@
       "value": "08"
     },
     {
-      "label": "24x7 Support",
+      "label": "Support",
       "value": "24/7"
     }
   ],
@@ -160,6 +302,48 @@
     {
       "name": "Preventive Healthcare",
       "summary": "Early guidance, risk awareness, follow-up, and long-term wellness planning.",
+      "iconKey": "shield"
+    }
+  ],
+  "facilities": [
+    {
+      "name": "Reception",
+      "summary": "A calm arrival area for registration, support, and first guidance.",
+      "iconKey": "building"
+    },
+    {
+      "name": "Consultation Rooms",
+      "summary": "Private consultation spaces for doctor-led history review and care planning.",
+      "iconKey": "stethoscope"
+    },
+    {
+      "name": "Therapy Rooms",
+      "summary": "Comfortable therapy rooms for naturopathy, pain care, and recovery support.",
+      "iconKey": "waves"
+    },
+    {
+      "name": "Wellness Spaces",
+      "summary": "Quiet wellness areas that support natural healing and patient comfort.",
+      "iconKey": "leaf"
+    },
+    {
+      "name": "Pharmacy",
+      "summary": "Medicine support with clear guidance from the hospital care team.",
+      "iconKey": "fileHeart"
+    },
+    {
+      "name": "Patient Lounge",
+      "summary": "Seating and waiting space designed for patients and families.",
+      "iconKey": "users"
+    },
+    {
+      "name": "Modern Equipment",
+      "summary": "Organized equipment zones that support clean and efficient patient care.",
+      "iconKey": "sparkles"
+    },
+    {
+      "name": "Clean Environment",
+      "summary": "A hygienic environment maintained for patient confidence and safety.",
       "iconKey": "shield"
     }
   ],
@@ -385,7 +569,7 @@
   ],
   "testimonials": [
     {
-      "name": "Suresh Patel",
+      "name": "Suresh 5",
       "condition": "Joint pain recovery",
       "quote": "The doctors explained everything simply. My treatment felt organized, respectful, and focused on daily improvement."
     },
@@ -407,7 +591,7 @@
     },
     {
       "q": "Can senior citizens book appointments easily?",
-      "a": "Yes. Families can book online, call the hospital, or use WhatsApp for assisted booking."
+      "a": "Yes. Families can book online call the hospital, or use WhatsApp for assisted booking."
     },
     {
       "q": "Are Ayurveda, Naturopathy, and Electro Homeopathy used together?",
@@ -434,29 +618,7 @@
       "a": "The helpline numbers are visible throughout the website for urgent help and quick routing."
     }
   ],
-  "blogPosts": [
-    {
-      "slug": "ayurveda-and-modern-diagnostics",
-      "title": "How Ayurveda and Modern Diagnostics Can Work Together",
-      "category": "Integrative Care",
-      "readTime": "5 min read",
-      "excerpt": "A clear look at how reports, symptoms, lifestyle, and natural care can support better decisions."
-    },
-    {
-      "slug": "joint-pain-warning-signs",
-      "title": "Joint Pain Warning Signs Families Should Not Ignore",
-      "category": "Pain Care",
-      "readTime": "4 min read",
-      "excerpt": "Simple indicators that help patients seek care early and avoid preventable discomfort."
-    },
-    {
-      "slug": "diabetes-lifestyle-routine",
-      "title": "A Daily Routine for Better Diabetes Management",
-      "category": "Lifestyle",
-      "readTime": "6 min read",
-      "excerpt": "Food timing, movement, sleep, stress, and follow-up habits that make care more sustainable."
-    }
-  ],
+  "blogPosts": [],
   "gallery": [
     "Reception",
     "Consultation",
@@ -466,6 +628,80 @@
     "Patient Lounge",
     "Modern Equipment",
     "Clean Environment"
+  ],
+  "galleryImages": [
+    {
+      "id": "npn-gallery-reception",
+      "title": "Reception",
+      "alt": "Premium hospital reception lobby with calm seating and front desk",
+      "category": "Reception",
+      "mimeType": "image/png",
+      "src": "/api/gallery-images/npn-gallery-reception",
+      "uploadedAt": "2026-08-01T00:00:00.000Z"
+    },
+    {
+      "id": "npn-gallery-consultation",
+      "title": "Consultation",
+      "alt": "Modern doctor consultation room with desk, chairs, and examination couch",
+      "category": "Consultation",
+      "mimeType": "image/png",
+      "src": "/api/gallery-images/npn-gallery-consultation",
+      "uploadedAt": "2026-08-01T00:00:00.000Z"
+    },
+    {
+      "id": "npn-gallery-therapy-rooms",
+      "title": "Therapy Rooms",
+      "alt": "Clean therapy room with treatment beds, curtains, and organized care equipment",
+      "category": "Therapy Rooms",
+      "mimeType": "image/png",
+      "src": "/api/gallery-images/npn-gallery-therapy-rooms",
+      "uploadedAt": "2026-08-01T00:00:00.000Z"
+    },
+    {
+      "id": "npn-gallery-wellness-spaces",
+      "title": "Wellness Spaces",
+      "alt": "Calm wellness space with comfortable seating and natural light",
+      "category": "Wellness Spaces",
+      "mimeType": "image/png",
+      "src": "/api/gallery-images/npn-gallery-wellness-spaces",
+      "uploadedAt": "2026-08-01T00:00:00.000Z"
+    },
+    {
+      "id": "npn-gallery-pharmacy",
+      "title": "Pharmacy",
+      "alt": "Modern hospital pharmacy counter with organized medicine shelves",
+      "category": "Pharmacy",
+      "mimeType": "image/png",
+      "src": "/api/gallery-images/npn-gallery-pharmacy",
+      "uploadedAt": "2026-08-01T00:00:00.000Z"
+    },
+    {
+      "id": "npn-gallery-patient-lounge",
+      "title": "Patient Lounge",
+      "alt": "Premium patient lounge with comfortable family seating and hospital reception nearby",
+      "category": "Patient Lounge",
+      "mimeType": "image/png",
+      "src": "/api/gallery-images/npn-gallery-patient-lounge",
+      "uploadedAt": "2026-08-01T00:00:00.000Z"
+    },
+    {
+      "id": "npn-gallery-modern-equipment",
+      "title": "Modern Equipment",
+      "alt": "Modern hospital equipment area with diagnostic and therapy devices",
+      "category": "Modern Equipment",
+      "mimeType": "image/png",
+      "src": "/api/gallery-images/npn-gallery-modern-equipment",
+      "uploadedAt": "2026-08-01T00:00:00.000Z"
+    },
+    {
+      "id": "npn-gallery-clean-environment",
+      "title": "Clean Environment",
+      "alt": "Spotless hospital corridor and patient care area with hygienic surfaces",
+      "category": "Clean Environment",
+      "mimeType": "image/png",
+      "src": "/api/gallery-images/npn-gallery-clean-environment",
+      "uploadedAt": "2026-08-01T00:00:00.000Z"
+    }
   ],
   "videoTitles": [
     "Doctor Explains Chronic Care",
@@ -527,47 +763,5 @@
     "SEO",
     "Media Library",
     "Settings"
-  ],
-  "facilities": [
-    {
-      "name": "Reception",
-      "summary": "A calm arrival area for registration, support, and first guidance.",
-      "iconKey": "building"
-    },
-    {
-      "name": "Consultation Rooms",
-      "summary": "Private consultation spaces for doctor-led history review and care planning.",
-      "iconKey": "stethoscope"
-    },
-    {
-      "name": "Therapy Rooms",
-      "summary": "Comfortable therapy rooms for naturopathy, pain care, and recovery support.",
-      "iconKey": "waves"
-    },
-    {
-      "name": "Wellness Spaces",
-      "summary": "Quiet wellness areas that support natural healing and patient comfort.",
-      "iconKey": "leaf"
-    },
-    {
-      "name": "Pharmacy",
-      "summary": "Medicine support with clear guidance from the hospital care team.",
-      "iconKey": "fileHeart"
-    },
-    {
-      "name": "Patient Lounge",
-      "summary": "Seating and waiting space designed for patients and families.",
-      "iconKey": "users"
-    },
-    {
-      "name": "Modern Equipment",
-      "summary": "Organized equipment zones that support clean and efficient patient care.",
-      "iconKey": "sparkles"
-    },
-    {
-      "name": "Clean Environment",
-      "summary": "A hygienic environment maintained for patient confidence and safety.",
-      "iconKey": "shield"
-    }
   ]
 }

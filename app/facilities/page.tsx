@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarCheck, MapPin } from "lucide-react";
 import { CmsIcon } from "@/components/CmsIcon";
+import { HospitalMap } from "@/components/HospitalMap";
 import { Section } from "@/components/Section";
 import { getCmsContent } from "@/lib/cms";
 
@@ -61,12 +62,7 @@ export default async function FacilitiesPage() {
               {hospital.hours}
             </div>
           </div>
-          <iframe
-            className="map-frame"
-            title="N.P.N. Care Hospital location"
-            loading="lazy"
-            src={`https://www.google.com/maps?q=${encodeURIComponent(hospital.mapQuery)}&output=embed`}
-          />
+          <HospitalMap name={hospital.name} address={hospital.address} mapQuery={hospital.mapQuery} />
         </div>
       </Section>
     </>

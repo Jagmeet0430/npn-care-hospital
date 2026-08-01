@@ -61,7 +61,7 @@ export default async function AgreementDetailPage({ params }: AgreementDetailPro
       <Section>
         <div className="agreement-detail-grid">
           <article className="card">
-            <ShieldCheck size={24} color="#227a59" />
+            <ShieldCheck size={24} color="#0F172A" />
             <h2>Patient Information</h2>
             <DetailList
               rows={[
@@ -77,7 +77,7 @@ export default async function AgreementDetailPage({ params }: AgreementDetailPro
           </article>
 
           <article className="card">
-            <FileText size={24} color="#227a59" />
+            <FileText size={24} color="#0F172A" />
             <h2>Medical Information</h2>
             <DetailList
               rows={[

@@ -59,6 +59,7 @@ export async function POST(request: Request) {
     id,
     title: cleanText(formData.get("title"), "Hospital Image"),
     alt: cleanText(formData.get("alt"), "N.P.N. Care Hospital image"),
+    category: cleanText(formData.get("category"), ""),
     mimeType: file.type,
     src: `/api/gallery-images/${id}`,
     uploadedAt: new Date().toISOString()

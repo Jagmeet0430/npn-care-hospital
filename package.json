@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
     "dev:next": "node scripts/dev-server.mjs",
-    "build": "prisma generate && node scripts/build-server.mjs",
-    "postinstall": "prisma generate",
+    "build": "node scripts/prisma-generate-safe.mjs && node scripts/build-server.mjs",
+    "postinstall": "node scripts/prisma-generate-safe.mjs",
     "start": "next start",
     "lint": "next lint",
     "backup:data": "node scripts/backup-data.mjs",

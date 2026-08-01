@@ -29,10 +29,13 @@ export const hospital = {
   secondaryPhone: "+91 90685 34783",
   emergency: "+91 91197 44783",
   whatsapp: "+91 90685 34783",
-  email: "care@npncarehospital.com",
+  email: "npncarehospital786@gmail.com",
+  instagram: "https://www.instagram.com/n.p.n_care_hospital/",
+  facebook: "https://www.facebook.com/search/top?q=N.P.N.%20Care%20Hospital",
+  youtube: "https://www.youtube.com/results?search_query=N.P.N.+Care+Hospital",
   address: "Pathak Ji Complex, Main Chauraha to Mant Road, Gorei, Iglas, Aligarh, Uttar Pradesh 202145",
   hours: "Mon-Sat, 10:00 AM - 4:00 PM | Sunday closed",
-  mapQuery: "Pathak Ji Complex Gorei Iglas Aligarh Uttar Pradesh 202145"
+  mapQuery: "N.P.N. Care Hospital, Pathak Ji Complex, Main Chauraha to Mant Road, Gorei, Iglas, Aligarh, Uttar Pradesh 202145"
 };
 
 export const navItems = [
@@ -40,6 +43,7 @@ export const navItems = [
   { label: "About", href: "/about" },
   { label: "Treatments", href: "/treatments" },
   { label: "Agreement", href: "/agreement" },
+  { label: "Careers", href: "/careers" },
   { label: "Gallery", href: "/gallery" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" }
@@ -50,7 +54,7 @@ export const trustStats = [
   { label: "Patients Served", value: "48K+" },
   { label: "Expert Doctors", value: "04" },
   { label: "Modern Facilities", value: "08" },
-  { label: "24x7 Support", value: "24/7" }
+  { label: "Support", value: "24/7" }
 ];
 
 export const values = [
@@ -390,23 +394,110 @@ export const blogPosts = [
   {
     slug: "ayurveda-and-modern-diagnostics",
     title: "How Ayurveda and Modern Diagnostics Can Work Together",
-    category: "Integrative Care",
+    category: "Ayurveda",
     readTime: "5 min read",
-    excerpt: "A clear look at how reports, symptoms, lifestyle, and natural care can support better decisions."
+    excerpt: "A clear look at how reports, symptoms, lifestyle, and natural care can support better decisions.",
+    image: "/images/npn-care-hero.png",
+    publishedAt: "2026-07-20",
+    authorName: "Dr. Raj Kumari",
+    authorQualification: "B.A.M.S.",
+    metaTitle: "Ayurveda and Modern Diagnostics | N.P.N. Care Hospital",
+    metaDescription: "Learn how Ayurveda and modern reports can work together for safer health decisions.",
+    fullContent: [
+      "Ayurveda begins with understanding the person, not only the symptom. Modern diagnostic reports can add useful clarity about current health status, risk factors, and progress over time.",
+      "When both are used responsibly, the doctor can review symptoms, medical history, medicines, food habits, sleep, stress, and available reports before suggesting the next step.",
+      "Patients should bring recent blood tests, scans, prescriptions, and discharge summaries when available. These documents help the care team explain the condition in simple language and avoid unnecessary confusion."
+    ]
   },
   {
     slug: "joint-pain-warning-signs",
     title: "Joint Pain Warning Signs Families Should Not Ignore",
     category: "Pain Care",
     readTime: "4 min read",
-    excerpt: "Simple indicators that help patients seek care early and avoid preventable discomfort."
+    excerpt: "Simple indicators that help patients seek care early and avoid preventable discomfort.",
+    image: "/images/npn-care-hero.png",
+    publishedAt: "2026-07-18",
+    authorName: "Dr. Sukhwinder Singh",
+    authorQualification: "Chronic Disease Specialist",
+    metaTitle: "Joint Pain Warning Signs | N.P.N. Care Hospital",
+    metaDescription: "Understand joint pain warning signs and when families should seek doctor guidance.",
+    fullContent: [
+      "Joint pain should be reviewed when it affects walking, sleep, work, daily chores, or mobility. Swelling, stiffness, repeated pain, or pain after a fall should not be ignored.",
+      "A doctor can check whether the pain is linked to injury, age-related changes, lifestyle strain, inflammation, posture, weight, or an existing medical condition.",
+      "Early consultation helps patients understand the safest care pathway, including exercises, lifestyle correction, natural therapies, and follow-up planning where suitable."
+    ]
   },
   {
     slug: "diabetes-lifestyle-routine",
     title: "A Daily Routine for Better Diabetes Management",
-    category: "Lifestyle",
+    category: "Diabetes",
     readTime: "6 min read",
-    excerpt: "Food timing, movement, sleep, stress, and follow-up habits that make care more sustainable."
+    excerpt: "Food timing, movement, sleep, stress, and follow-up habits that make care more sustainable.",
+    image: "/images/npn-care-hero.png",
+    publishedAt: "2026-07-15",
+    authorName: "Dr. S. S. Singh",
+    authorQualification: "D.N.Y.S. Naturopathy",
+    metaTitle: "Daily Routine for Diabetes Management | N.P.N. Care Hospital",
+    metaDescription: "Simple daily lifestyle habits that can support diabetes care and doctor-led follow-up.",
+    fullContent: [
+      "Diabetes care becomes easier when daily habits are consistent. Food timing, sleep, movement, hydration, stress, and medicine follow-up all matter.",
+      "Patients should track sugar reports as advised by their doctor and share symptoms such as weakness, unusual thirst, weight changes, or repeated fatigue during consultation.",
+      "A sustainable routine is not extreme. It should be realistic for the patient's age, work, family life, medicines, and medical history."
+    ]
+  },
+  {
+    slug: "heart-health-family-guide",
+    title: "A Family Guide to Heart Health Warning Signs",
+    category: "Heart Care",
+    readTime: "5 min read",
+    excerpt: "Know the symptoms, habits, and follow-up steps that support better heart health awareness.",
+    image: "/images/npn-care-hero.png",
+    publishedAt: "2026-07-12",
+    authorName: "Dr. G. K. Kumari",
+    authorQualification: "D.N.Y.S. Naturopathy",
+    metaTitle: "Heart Health Warning Signs | N.P.N. Care Hospital",
+    metaDescription: "A simple family guide to heart health awareness and timely consultation.",
+    fullContent: [
+      "Chest discomfort, breathlessness, unusual sweating, repeated fatigue, dizziness, or pain spreading to the arm or jaw should be taken seriously.",
+      "Families can support heart health by encouraging regular check-ups, balanced food, sleep, movement, stress management, and medicine adherence as advised.",
+      "Emergency symptoms require urgent medical help. Wellness guidance is useful, but it should never delay emergency care."
+    ]
+  },
+  {
+    slug: "nutrition-for-natural-wellness",
+    title: "Nutrition Habits That Support Natural Wellness",
+    category: "Nutrition",
+    readTime: "5 min read",
+    excerpt: "Simple food habits that help patients build a more stable daily wellness routine.",
+    image: "/images/npn-care-hero.png",
+    publishedAt: "2026-07-10",
+    authorName: "N.P.N. Doctor Team",
+    authorQualification: "Doctor reviewed",
+    metaTitle: "Nutrition for Natural Wellness | N.P.N. Care Hospital",
+    metaDescription: "Learn practical nutrition habits that support long-term wellness.",
+    fullContent: [
+      "Nutrition advice should fit the patient's body, routine, condition, age, appetite, digestion, and medicines. A plan that is too difficult is rarely sustainable.",
+      "Balanced meals, regular timing, mindful portions, hydration, and less dependence on processed foods can support better daily energy.",
+      "Patients with diabetes, kidney issues, heart concerns, pregnancy, or chronic disease should take personalized diet guidance before making major changes."
+    ]
+  },
+  {
+    slug: "skin-health-and-natural-care",
+    title: "Skin Health: When Rashes and Itching Need Attention",
+    category: "Skin",
+    readTime: "4 min read",
+    excerpt: "Understand common skin signals and why personal review matters before treatment.",
+    image: "/images/npn-care-hero.png",
+    publishedAt: "2026-07-08",
+    authorName: "Dr. Raj Kumari",
+    authorQualification: "B.A.M.S.",
+    metaTitle: "Skin Health and Natural Care | N.P.N. Care Hospital",
+    metaDescription: "Understand when rashes, itching, and skin irritation should be reviewed by a doctor.",
+    fullContent: [
+      "Skin symptoms can be linked to allergy, infection, weather, food, stress, medicines, hygiene, or internal health concerns.",
+      "A spreading rash, pain, swelling, pus, fever, repeated itching, or symptoms after a new medicine should be reviewed promptly.",
+      "The care plan should be based on examination and history. Avoid using strong creams or home remedies without guidance."
+    ]
   }
 ];
 

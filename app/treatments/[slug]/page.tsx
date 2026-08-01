@@ -105,7 +105,7 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
             <ul className="check-list">
               {carePathway.map((item) => (
                 <li key={item}>
-                  <CheckCircle2 size={21} color="#0f8a55" />
+                  <CheckCircle2 size={21} color="#0F172A" />
                   {item}
                 </li>
               ))}
@@ -140,7 +140,7 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
         <div className="grid grid-4">
           {symptoms.map((item) => (
             <article className="card" key={item}>
-              <CheckCircle2 size={22} color="#0f8a55" />
+              <CheckCircle2 size={22} color="#0F172A" />
               <p>{item}</p>
             </article>
           ))}
@@ -151,7 +151,7 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
         <div className="grid grid-4">
           {benefits.map((item) => (
             <article className="card" key={item}>
-              <ShieldCheck size={22} color="#227a59" />
+              <ShieldCheck size={22} color="#0F172A" />
               <p>{item}</p>
             </article>
           ))}

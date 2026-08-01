@@ -26,45 +26,45 @@ type AgreementWizardProps = {
 type AgreementErrors = Record<string, string>;
 
 const steps = [
-  "Patient Information",
-  "Medical Information",
-  "Treatment Details",
-  "Upload Documents",
-  "Digital Agreement",
-  "Digital Signature",
-  "Review"
+  "मरीज की जानकारी",
+  "चिकित्सा जानकारी",
+  "इलाज का विवरण",
+  "दस्तावेज अपलोड",
+  "डिजिटल एग्रीमेंट",
+  "डिजिटल हस्ताक्षर",
+  "समीक्षा"
 ];
 
 const agreementSections = [
   {
     key: "declaration",
-    title: "Patient Declaration",
-    text: "I confirm that the personal information provided by me is true and complete."
+    title: "मरीज घोषणा",
+    text: "मैं घोषणा करता/करती हूं कि मेरे द्वारा दी गई सभी व्यक्तिगत जानकारी सही और पूर्ण है।"
   },
   {
     key: "treatmentConsent",
-    title: "Treatment Consent",
-    text: "I understand that treatment planning depends on consultation, medical history, and doctor assessment."
+    title: "इलाज हेतु सहमति",
+    text: "मैं समझता/समझती हूं कि इलाज की योजना डॉक्टर की सलाह, मेडिकल हिस्ट्री, रिपोर्ट और जांच के आधार पर बनाई जाएगी।"
   },
   {
     key: "privacyPolicy",
-    title: "Privacy Policy",
-    text: "I consent to the hospital storing and using my information for care, follow-up, billing, and required records."
+    title: "गोपनीयता सहमति",
+    text: "मैं अस्पताल को अपनी जानकारी इलाज, फॉलो-अप, बिलिंग और आवश्यक रिकॉर्ड हेतु सुरक्षित रखने और उपयोग करने की सहमति देता/देती हूं।"
   },
   {
     key: "medicalConfirmation",
-    title: "Medical Information Confirmation",
-    text: "I confirm that I have shared previous reports, medicines, allergies, and relevant medical details accurately."
+    title: "चिकित्सा जानकारी की पुष्टि",
+    text: "मैं पुष्टि करता/करती हूं कि मैंने अपनी पुरानी रिपोर्ट, दवाइयां, एलर्जी और संबंधित मेडिकल जानकारी सही रूप से बताई है।"
   },
   {
     key: "responsibilities",
-    title: "Responsibilities",
-    text: "I agree to follow doctor guidance, attend follow-ups, and inform the hospital if my condition changes."
+    title: "मरीज की जिम्मेदारी",
+    text: "मैं डॉक्टर द्वारा बताए गए इलाज, परहेज, दवा, फॉलो-अप और निर्देशों का पालन करने के लिए सहमत हूं।"
   },
   {
     key: "importantNotes",
-    title: "Important Notes",
-    text: "I understand that outcomes vary by patient and no treatment promise is final without written hospital confirmation."
+    title: "जरूरी सूचना",
+    text: "मैं समझता/समझती हूं कि इलाज का परिणाम मरीज की स्थिति के अनुसार अलग हो सकता है और कोई भी गारंटी केवल अस्पताल द्वारा लिखित पुष्टि पर ही मान्य होगी।"
   }
 ] as const;
 
@@ -249,7 +249,7 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
     if (!context) return;
     context.lineWidth = 2.5;
     context.lineCap = "round";
-    context.strokeStyle = "#123b2c";
+    context.strokeStyle = "#1E293B";
     context.lineTo(event.clientX - rect.left, event.clientY - rect.top);
     context.stroke();
     context.beginPath();
@@ -395,7 +395,7 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
 
           {step === 4 ? (
             <div className="wizard-section">
-              <StepTitle icon={<FileCheck2 size={22} />} title="Digital Agreement" text="Read each section and confirm before signing." />
+              <StepTitle icon={<FileCheck2 size={22} />} title="डिजिटल एग्रीमेंट" text="हस्ताक्षर करने से पहले प्रत्येक शर्त पढ़कर पुष्टि करें।" />
               <div className="agreement-text-card">
                 {agreementSections.map((section) => (
                   <label className="consent-row" key={section.key}>
@@ -413,7 +413,7 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
                 <label className="consent-row final">
                   <input checked={form.confirmations.finalConsent} type="checkbox" onChange={(event) => setNested("confirmations", "finalConsent", event.target.checked)} />
                   <span>
-                    <strong>I have read and understood the agreement and voluntarily agree to all terms.</strong>
+                    <strong>मैंने एग्रीमेंट पढ़ और समझ लिया है तथा सभी शर्तों से स्वेच्छा से सहमत हूं।</strong>
                   </span>
                 </label>
               </div>
@@ -422,7 +422,7 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
 
           {step === 5 ? (
             <div className="wizard-section">
-              <StepTitle icon={<PenLine size={22} />} title="Digital Signature" text="Draw, type, or upload your signature." />
+              <StepTitle icon={<PenLine size={22} />} title="डिजिटल हस्ताक्षर" text="अपना हस्ताक्षर टाइप करें, बनाएं या अपलोड करें।" />
               <div className="signature-tabs">
                 {(["type", "draw", "upload"] as const).map((mode) => (
                   <button className={form.signature.mode === mode ? "active" : ""} key={mode} type="button" onClick={() => setForm((current) => ({ ...current, signature: { mode, value: "", typedName: "" } }))}>

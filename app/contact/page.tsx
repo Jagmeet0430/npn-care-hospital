@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Ambulance, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Section } from "@/components/Section";
 import { AppointmentForm } from "@/components/AppointmentForm";
+import { HospitalMap } from "@/components/HospitalMap";
 import { getCmsContent } from "@/lib/cms";
 
 export const metadata: Metadata = {
@@ -60,12 +61,7 @@ export default async function ContactPage() {
       </Section>
 
       <Section className="band" title="Google Maps">
-        <iframe
-          className="map-frame"
-          title="N.P.N. Care Hospital map"
-          loading="lazy"
-          src={`https://www.google.com/maps?q=${encodeURIComponent(hospital.mapQuery)}&output=embed`}
-        />
+        <HospitalMap name={hospital.name} address={hospital.address} mapQuery={hospital.mapQuery} />
       </Section>
     </>
   );

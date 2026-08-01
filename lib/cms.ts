@@ -33,6 +33,7 @@ import {
   gallery,
   hospital,
   journey,
+  navItems,
   patientHindiHighlights,
   patientSchemes,
   testimonials,
@@ -66,6 +67,16 @@ export type CmsIconItem = {
   iconKey: IconKey;
 };
 
+export type CmsVideoItem = {
+  id?: string;
+  title: string;
+  category: string;
+  description: string;
+  url: string;
+  thumbnail: string;
+  featured: boolean;
+};
+
 export type CmsContent = {
   hospital: typeof hospital;
   hero: {
@@ -75,6 +86,39 @@ export type CmsContent = {
     primaryButton: string;
     secondaryButton: string;
     locationLabel: string;
+  };
+  navigation: typeof navItems;
+  footer: {
+    description: string;
+    exploreLinks: Array<{ label: string; href: string }>;
+    bottomLeft: string;
+    bottomRight: string;
+  };
+  careers: {
+    heroTitle: string;
+    heroText: string;
+    primaryButton: string;
+    secondaryButton: string;
+    openingsEyebrow: string;
+    openingsTitle: string;
+    openings: Array<{ title: string; text: string }>;
+    benefitsEyebrow: string;
+    benefitsTitle: string;
+    benefits: string[];
+    cultureEyebrow: string;
+    cultureTitle: string;
+    cultureCards: Array<{ title: string; text: string }>;
+    quoteEyebrow: string;
+    quoteTitle: string;
+    quoteText: string;
+    applicationEyebrow: string;
+    applicationTitle: string;
+    applicationStatusTitle: string;
+    applicationStatusText: string;
+    statusList: string[];
+    faqEyebrow: string;
+    faqTitle: string;
+    faqs: Array<{ q: string; a: string }>;
   };
   homepage: {
     whyEyebrow: string;
@@ -133,7 +177,7 @@ export type CmsContent = {
   blogPosts: typeof blogPosts;
   gallery: typeof gallery;
   galleryImages: HospitalGalleryImage[];
-  videoTitles: string[];
+  videoTitles: Array<string | CmsVideoItem>;
   adminModules: Array<Omit<(typeof adminModules)[number], "icon"> & CmsIconItem>;
   cmsAreas: typeof cmsAreas;
 };
@@ -236,6 +280,66 @@ export function getDefaultCmsContent(): CmsContent {
       secondaryButton: "Talk to Doctor",
       locationLabel: "Gorei, Iglas, Aligarh"
     },
+    navigation: navItems,
+    footer: {
+      description:
+        "Premium, patient-first Ayurveda, Naturopathy, Electro Homeopathy, and Integrative Healthcare for families, senior citizens, insured patients, and eligible low-income families.",
+      exploreLinks: [
+        { label: "Careers / Apply Now", href: "/careers" },
+        { label: "Digital Agreement", href: "/agreement" },
+        { label: "Gallery", href: "/gallery" },
+        { label: "Contact", href: "/contact" }
+      ],
+      bottomLeft: `Copyright ${new Date().getFullYear()} ${hospital.name}. All rights reserved.`,
+      bottomRight: "Privacy | Terms | Accessibility"
+    },
+    careers: {
+      heroTitle: "Join Our Team",
+      heroText:
+        "Build a meaningful healthcare career with a hospital focused on professional care, natural healing, and patient dignity.",
+      primaryButton: "Apply Now",
+      secondaryButton: "View Openings",
+      openingsEyebrow: "Current Openings",
+      openingsTitle: "Roles designed around patient care and professional growth.",
+      openings: [
+        { title: "Receptionist", text: "Front desk coordination, patient guidance, calls, and appointment support." },
+        { title: "Naturopathy Therapist", text: "Therapy room support, patient care routines, and wellness program assistance." },
+        { title: "Patient Care Coordinator", text: "Help patients understand visits, documents, follow-ups, and care schedules." },
+        { title: "Admin Executive", text: "Support records, communication, operations, and hiring coordination." }
+      ],
+      benefitsEyebrow: "Benefits",
+      benefitsTitle: "A calm workplace with clear systems and human care.",
+      benefits: [
+        "Calm healthcare workplace",
+        "Patient-first team culture",
+        "Training and growth support",
+        "Respectful communication",
+        "Organized digital workflow",
+        "Purpose-led natural healing"
+      ],
+      cultureEyebrow: "Hospital Culture",
+      cultureTitle: "Professional healthcare with natural healing values.",
+      cultureCards: [
+        { title: "Patient dignity first", text: "Every role supports clear guidance, respectful communication, and practical help for families." },
+        { title: "Modern systems", text: "Digital applications, appointment queues, content tools, and admin workflows keep the work organized." }
+      ],
+      quoteEyebrow: "Employee Voice",
+      quoteTitle: "\"The hospital feels organized, calm, and personal.\"",
+      quoteText: "Team members are encouraged to learn, communicate clearly, and contribute to better patient experience.",
+      applicationEyebrow: "Application Form",
+      applicationTitle: "Submit your job application securely.",
+      applicationStatusTitle: "Application Status",
+      applicationStatusText: "After submission, each applicant receives an Application ID, submitted date, and current status.",
+      statusList: ["Received", "Under Review", "Interview", "Selected", "Rejected"],
+      faqEyebrow: "Career FAQ",
+      faqTitle: "Answers before you apply.",
+      faqs: [
+        { q: "Can freshers apply?", a: "Yes. Some roles are open to freshers with good communication, discipline, and willingness to learn." },
+        { q: "Which resume formats are accepted?", a: "PDF, DOC, and DOCX files up to 5 MB are accepted." },
+        { q: "How will I know my status?", a: "You receive an application ID after submission. The admin team reviews and updates the application status." },
+        { q: "Can I apply for multiple roles?", a: "Please submit one application for the role that best matches your experience." }
+      ]
+    },
     homepage: {
       whyEyebrow: "Why Choose Us",
       whyTitle: "Why patients choose N.P.N. Care Hospital.",
@@ -281,7 +385,7 @@ export function getDefaultCmsContent(): CmsContent {
       doctorsTitle: "Doctor profiles from the pamphlet, presented professionally.",
       journeyTitle: "A guided path from first call to long-term wellness.",
       storiesTitle: "Real outcomes presented with dignity and clarity.",
-      galleryTitle: "Visual proof of care, facilities, and community presence.",
+      galleryTitle: "Types of facilities, and community presence.",
       facilitiesTitle: "Hospital facilities designed for calm, safe visits.",
       facilitiesText:
         "From reception to therapy rooms, every patient touchpoint is presented as a clean, comfortable, and professional healthcare environment.",
@@ -344,6 +448,21 @@ function mergeCmsContent(data: Partial<CmsContent>): CmsContent {
     ...data,
     hospital: { ...defaults.hospital, ...(data.hospital ?? {}) },
     hero: { ...defaults.hero, ...(data.hero ?? {}) },
+    navigation: data.navigation ?? defaults.navigation,
+    footer: {
+      ...defaults.footer,
+      ...(data.footer ?? {}),
+      exploreLinks: data.footer?.exploreLinks ?? defaults.footer.exploreLinks
+    },
+    careers: {
+      ...defaults.careers,
+      ...(data.careers ?? {}),
+      openings: data.careers?.openings ?? defaults.careers.openings,
+      benefits: data.careers?.benefits ?? defaults.careers.benefits,
+      cultureCards: data.careers?.cultureCards ?? defaults.careers.cultureCards,
+      statusList: data.careers?.statusList ?? defaults.careers.statusList,
+      faqs: data.careers?.faqs ?? defaults.careers.faqs
+    },
     homepage: { ...defaults.homepage, ...(data.homepage ?? {}) },
     facilities: data.facilities ?? defaults.facilities,
     galleryImages: data.galleryImages ?? defaults.galleryImages

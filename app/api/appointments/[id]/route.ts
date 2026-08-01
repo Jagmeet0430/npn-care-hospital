@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { appointmentStatusValues } from "@/lib/appointment-shared";
 import { appendAuditLog } from "@/lib/audit";
-import { updateAppointment } from "@/lib/appointments";
+import { deleteAppointment, updateAppointment } from "@/lib/appointments";
 import { requirePermission } from "@/lib/server-auth";
 
 type AppointmentRouteProps = {
@@ -44,6 +44,32 @@ export async function PATCH(request: Request, { params }: AppointmentRouteProps)
     targetType: "Appointment",
     targetId: appointment.id,
     message: `Appointment updated for ${appointment.name}.`
+  });
+
+  return NextResponse.json({ ok: true, appointment });
+}
+
+export async function DELETE(request: Request, { params }: AppointmentRouteProps) {
+  const authorization = await requirePermission("appointments:delete", request);
+  if (!authorization.authorized) {
+    return authorization.response;
+  }
+
+  const { id } = await params;
+  const appointment = await deleteAppointment(id);
+
+  if (!appointment) {
+    return NextResponse.json({ ok: false, message: "Appointment not found" }, { status: 404 });
+  }
+
+  await appendAuditLog({
+    action: "APPOINTMENT_DELETED",
+    actorId: authorization.session.user.id,
+    actorEmail: authorization.session.user.email ?? undefined,
+    role: authorization.session.user.role,
+    targetType: "Appointment",
+    targetId: appointment.id,
+    message: `Appointment deleted for ${appointment.name}.`
   });
 
   return NextResponse.json({ ok: true, appointment });

@@ -161,17 +161,17 @@ export default async function PatientPage() {
           </div>
           <div className="grid grid-3">
             <article className="card">
-              <UserRound size={24} color="#0f8a55" />
+              <UserRound size={24} color="#0F172A" />
               <h3>Profile</h3>
               <p>Name, age, gender, phone, email, address, emergency contact, and preferred language.</p>
             </article>
             <article className="card">
-              <FileHeart size={24} color="#0f8a55" />
+              <FileHeart size={24} color="#0F172A" />
               <h3>Medical Reports</h3>
               <p>Upload and view lab reports, scans, prescriptions, discharge notes, and therapy summaries.</p>
             </article>
             <article className="card">
-              <Bell size={24} color="#0f8a55" />
+              <Bell size={24} color="#0F172A" />
               <h3>Notifications</h3>
               <p>Appointment reminders, report updates, payment alerts, and doctor follow-up notes.</p>
             </article>

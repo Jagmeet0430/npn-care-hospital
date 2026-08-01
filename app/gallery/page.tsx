@@ -10,8 +10,34 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
+function getVideo(item: Awaited<ReturnType<typeof getCmsContent>>["videoTitles"][number], index: number) {
+  if (typeof item === "string") {
+    return {
+      id: `video-${index + 1}`,
+      title: item,
+      category: "Patient Education",
+      description: "Hospital video guidance for patients and families.",
+      url: "",
+      thumbnail: "",
+      featured: index === 0
+    };
+  }
+
+  return {
+    id: item.id || `video-${index + 1}`,
+    title: item.title,
+    category: item.category,
+    description: item.description,
+    url: item.url,
+    thumbnail: item.thumbnail,
+    featured: item.featured
+  };
+}
+
 export default async function GalleryPage() {
   const { facilities, gallery, galleryImages, homepage, videoTitles } = await getCmsContent();
+  const categoryImages = new Map(galleryImages.filter((image) => image.category).map((image) => [image.category as string, image]));
+  const videos = videoTitles.map(getVideo).filter((video) => video.title.trim()).sort((a, b) => Number(b.featured) - Number(a.featured));
 
   return (
     <>
@@ -40,11 +66,14 @@ export default async function GalleryPage() {
 
       <Section title="Photo Categories">
         <div className="grid grid-4">
-          {gallery.map((item) => (
-            <div className="media-tile" key={item}>
-              {item}
-            </div>
-          ))}
+          {gallery.map((item) => {
+            const image = categoryImages.get(item);
+            return (
+              <div className="media-tile" key={item} style={image ? { backgroundImage: `linear-gradient(145deg, rgba(15, 23, 42, 0.52), rgba(15, 23, 42, 0.16)), url(${image.src})` } : undefined}>
+                {item}
+              </div>
+            );
+          })}
         </div>
       </Section>
 
@@ -61,13 +90,22 @@ export default async function GalleryPage() {
 
       <Section eyebrow="Video Gallery" title={homepage.videoTitle}>
         <div className="grid grid-3">
-          {videoTitles.map((item) => (
-            <div className="video-tile" key={item}>
+          {videos.map((video) => (
+            <a
+              className="video-tile"
+              href={video.url || "#"}
+              key={video.id}
+              rel="noreferrer"
+              target={video.url ? "_blank" : undefined}
+              style={video.thumbnail ? { backgroundImage: `linear-gradient(145deg, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.24)), url(${video.thumbnail})` } : undefined}
+            >
               <span className="play">
                 <Play size={28} fill="white" />
               </span>
-              <span>{item}</span>
-            </div>
+              <small>{video.category}</small>
+              <span>{video.title}</span>
+              <p>{video.description}</p>
+            </a>
           ))}
         </div>
       </Section>

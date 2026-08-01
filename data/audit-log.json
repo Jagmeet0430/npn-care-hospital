@@ -1,5 +1,365 @@
 [
   {
+    "id": "a96a65d2-ac7c-49f0-a8ee-0e9d9861af91",
+    "at": "2026-08-01T13:31:46.163Z",
+    "action": "LOGIN_SUCCESS",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0",
+    "message": "User signed in successfully."
+  },
+  {
+    "id": "99d76a44-512d-4122-9c10-aed044686080",
+    "at": "2026-07-31T15:02:45.104Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "faeae305-608f-4938-902a-d2c7da2dc07d",
+    "at": "2026-07-31T14:59:34.212Z",
+    "action": "TESTIMONIAL_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "Testimonial",
+    "targetId": "testimonial_seed_1",
+    "message": "Testimonial updated for Suresh."
+  },
+  {
+    "id": "2bfcc109-cab6-498b-a416-2ff22dbb3ad1",
+    "at": "2026-07-31T14:58:56.260Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "b95fb36f-1083-42dd-ba9f-e974a754997e",
+    "at": "2026-07-31T14:58:55.218Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "23b81640-67fa-4265-854d-908faa7942ac",
+    "at": "2026-07-31T14:58:55.024Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "470dcde2-8a5d-4b73-80f3-95dc3e325402",
+    "at": "2026-07-31T14:58:54.822Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "dfd1965f-b3fe-4fbf-9a7e-fab1ec41d954",
+    "at": "2026-07-31T14:58:54.656Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "5ae3e7f9-cf53-40f7-872d-5c91b3cc9809",
+    "at": "2026-07-31T14:58:54.510Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "877f6985-017e-48f0-ae01-1ff82e9404c6",
+    "at": "2026-07-31T14:58:54.379Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "4e2e102a-7d71-4309-9355-49ff724cab05",
+    "at": "2026-07-31T14:58:54.211Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "0f05aba6-4aad-4273-92e6-a6a58e1cd5ba",
+    "at": "2026-07-31T14:58:54.073Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "be1b700a-59ff-43f4-be64-9114a5fe3b56",
+    "at": "2026-07-31T14:58:51.599Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "68dad8ea-2082-4fb8-92ca-be8ac9c5ab09",
+    "at": "2026-07-31T14:58:26.684Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "c7349f27-43b9-4bb0-9d11-6134b8b904a2",
+    "at": "2026-07-31T14:38:54.502Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "bab715e8-990b-4b80-b440-5e6c223ff978",
+    "at": "2026-07-31T14:18:48.426Z",
+    "action": "APPOINTMENT_DELETED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "Appointment",
+    "targetId": "appt_seed_2",
+    "message": "Appointment deleted for Meena Shah."
+  },
+  {
+    "id": "7290896d-aae0-4b7c-a433-c3820f004def",
+    "at": "2026-07-31T14:18:43.159Z",
+    "action": "APPOINTMENT_DELETED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "Appointment",
+    "targetId": "appt_seed_1",
+    "message": "Appointment deleted for Ramesh Kumar."
+  },
+  {
+    "id": "0b49c188-27cf-48bd-8571-6a8d44dbbf8a",
+    "at": "2026-07-31T13:38:44.350Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "f90c6de9-38cd-4890-8818-52a5fef61677",
+    "at": "2026-07-31T13:38:06.492Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "7697b37f-bfa4-4e12-94b7-ccfc591ceb8e",
+    "at": "2026-07-31T13:37:04.625Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "b1b24f46-ff7f-40ac-904a-ca5a278022f8",
+    "at": "2026-07-31T13:37:03.654Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "d4bc7021-6566-4f8b-80aa-79b7b61e2ba8",
+    "at": "2026-07-31T13:37:01.952Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "4fe39970-3bc3-48e7-bae0-9c59fe28a65a",
+    "at": "2026-07-31T13:36:59.959Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "3486d448-0e02-4035-be31-4d547b1c2ace",
+    "at": "2026-07-31T13:36:57.841Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "0ee0262c-e7af-4734-98ed-7328272ad6b1",
+    "at": "2026-07-31T13:36:56.333Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "cfe60c61-1d50-42b2-beb3-c9d481572e1e",
+    "at": "2026-07-31T13:36:54.427Z",
+    "action": "CMS_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "82882e51-4ac5-45ff-a0ed-0a612f8d7225",
+    "at": "2026-07-31T13:24:13.124Z",
+    "action": "APPOINTMENT_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "Appointment",
+    "targetId": "bb6bf644-25da-4f10-89fa-224d4f6daadf",
+    "message": "Appointment updated for Jagmeet Saini."
+  },
+  {
+    "id": "791ada6f-0f7a-4526-9f8e-d26395f3bb88",
+    "at": "2026-07-31T13:24:10.092Z",
+    "action": "APPOINTMENT_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "Appointment",
+    "targetId": "bb6bf644-25da-4f10-89fa-224d4f6daadf",
+    "message": "Appointment updated for Jagmeet Saini."
+  },
+  {
+    "id": "b132058b-8f16-431d-8048-fdaa4ea524bc",
+    "at": "2026-07-31T13:24:07.681Z",
+    "action": "APPOINTMENT_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "Appointment",
+    "targetId": "bb6bf644-25da-4f10-89fa-224d4f6daadf",
+    "message": "Appointment updated for Jagmeet Saini."
+  },
+  {
+    "id": "08772361-999d-4104-9798-ad2a914af83a",
+    "at": "2026-07-31T13:24:05.255Z",
+    "action": "APPOINTMENT_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "Appointment",
+    "targetId": "bb6bf644-25da-4f10-89fa-224d4f6daadf",
+    "message": "Appointment updated for Jagmeet Saini."
+  },
+  {
+    "id": "1981e132-53b3-45d1-a5e5-0558d7bda073",
+    "at": "2026-07-31T13:24:03.843Z",
+    "action": "APPOINTMENT_UPDATED",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "Appointment",
+    "targetId": "bb6bf644-25da-4f10-89fa-224d4f6daadf",
+    "message": "Appointment updated for Jagmeet Saini."
+  },
+  {
+    "id": "3767772b-fcdc-4b79-9557-212bf213dc49",
+    "at": "2026-07-31T13:23:39.588Z",
+    "action": "LOGIN_SUCCESS",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0",
+    "message": "User signed in successfully."
+  },
+  {
+    "id": "cbf3d2c0-634c-410b-bcdc-102121e205e2",
+    "at": "2026-07-31T12:24:06.453Z",
+    "action": "AI_ASSISTANT_MESSAGE",
+    "targetType": "AssistantConversation",
+    "targetId": "e449d25e-7f61-47a5-a8d6-52dc22d5260c",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.21.0",
+    "message": "AI assistant answered from approved content."
+  },
+  {
+    "id": "250ee01e-3e95-42f6-b711-25a271b9fb19",
+    "at": "2026-07-31T12:23:34.585Z",
+    "action": "AI_ASSISTANT_MESSAGE",
+    "targetType": "AssistantConversation",
+    "targetId": "71cf5717-31ab-4970-a898-aca1f7cb01f7",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.21.0",
+    "message": "AI assistant answered from approved content."
+  },
+  {
+    "id": "2aa1dcbd-6947-4272-9950-5a008d7b44da",
+    "at": "2026-07-31T12:12:27.304Z",
+    "action": "AI_ASSISTANT_MESSAGE",
+    "targetType": "AssistantConversation",
+    "targetId": "c2c68bab-18bb-4bf0-8beb-8818b91f68da",
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.8875",
+    "message": "AI assistant answered from approved content."
+  },
+  {
     "id": "a3cc6adc-8fb1-4e9c-ad6c-91b3b45bf9cb",
     "at": "2026-07-30T09:26:03.406Z",
     "action": "LOGIN_SUCCESS",

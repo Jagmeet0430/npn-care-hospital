@@ -20,45 +20,21 @@ export type AppointmentRecord = {
 
 const appointmentsPath = path.join(process.cwd(), "data", "appointments.json");
 
-const seedAppointments: AppointmentRecord[] = [
-  {
-    id: "appt_seed_1",
-    name: "Ramesh Kumar",
-    age: 58,
-    gender: "Male",
-    phone: "9876543210",
-    email: "ramesh@example.com",
-    treatment: "Joint Pain",
-    doctor: "Dr. Sukhwinder Singh",
-    date: "2026-07-29",
-    time: "Morning",
-    status: "confirmed",
-    createdAt: "2026-07-28T10:30:00.000Z"
-  },
-  {
-    id: "appt_seed_2",
-    name: "Meena Shah",
-    age: 45,
-    gender: "Female",
-    phone: "9876543211",
-    email: "meena@example.com",
-    treatment: "Diabetes Care",
-    doctor: "Dr. Raj Kumari",
-    date: "2026-07-29",
-    time: "Afternoon",
-    status: "received",
-    createdAt: "2026-07-28T12:00:00.000Z"
-  }
-];
-
 export async function getAppointments(): Promise<AppointmentRecord[]> {
   try {
     const raw = await readFile(appointmentsPath, "utf8");
     const parsed = JSON.parse(raw) as unknown;
-    return isEncryptedPayload(parsed) ? decryptJson<AppointmentRecord[]>(parsed) : (parsed as AppointmentRecord[]);
+    const appointments = isEncryptedPayload(parsed) ? decryptJson<AppointmentRecord[]>(parsed) : (parsed as AppointmentRecord[]);
+    const liveAppointments = appointments.filter((appointment) => !appointment.id.startsWith("appt_seed_"));
+
+    if (liveAppointments.length !== appointments.length) {
+      await saveAppointments(liveAppointments);
+    }
+
+    return liveAppointments;
   } catch {
-    await saveAppointments(seedAppointments);
-    return seedAppointments;
+    await saveAppointments([]);
+    return [];
   }
 }
 
@@ -92,4 +68,13 @@ export async function updateAppointment(
   const nextAppointments = appointments.with(index, updatedAppointment);
   await saveAppointments(nextAppointments);
   return updatedAppointment;
+}
+
+export async function deleteAppointment(id: string) {
+  const appointments = await getAppointments();
+  const appointment = appointments.find((item) => item.id === id);
+  if (!appointment) return null;
+
+  await saveAppointments(appointments.filter((item) => item.id !== id));
+  return appointment;
 }

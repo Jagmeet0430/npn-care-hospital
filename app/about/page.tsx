@@ -36,7 +36,7 @@ export default async function AboutPage() {
             <ul className="mission-list">
               {homepage.aboutBullets.map((item) => (
                 <li key={item}>
-                  <CheckCircle2 size={21} color="#0f8a55" />
+                  <CheckCircle2 size={21} color="#0F172A" />
                   {item}
                 </li>
               ))}

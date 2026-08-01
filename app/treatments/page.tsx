@@ -46,7 +46,7 @@ export default async function TreatmentsPage() {
         <div className="grid grid-4">
           {conditionGroups.map((condition) => (
             <div className="contact-row" key={condition}>
-              <CheckCircle2 size={20} color="#0f8a55" />
+              <CheckCircle2 size={20} color="#0F172A" />
               {condition}
             </div>
           ))}

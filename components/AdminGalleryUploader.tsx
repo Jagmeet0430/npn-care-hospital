@@ -6,13 +6,15 @@ import type { HospitalGalleryImage } from "@/lib/gallery-shared";
 
 type AdminGalleryUploaderProps = {
   images: HospitalGalleryImage[];
+  categories: string[];
 };
 
-export function AdminGalleryUploader({ images: initialImages }: AdminGalleryUploaderProps) {
+export function AdminGalleryUploader({ categories, images: initialImages }: AdminGalleryUploaderProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [images, setImages] = useState(initialImages);
   const [title, setTitle] = useState("");
   const [alt, setAlt] = useState("");
+  const [category, setCategory] = useState(categories[0] ?? "");
   const [status, setStatus] = useState("Upload hospital photos here. They will appear on the customer gallery page.");
   const [uploading, setUploading] = useState(false);
 
@@ -21,6 +23,7 @@ export function AdminGalleryUploader({ images: initialImages }: AdminGalleryUplo
     formData.append("image", file);
     formData.append("title", title || file.name.replace(/\.[^.]+$/, ""));
     formData.append("alt", alt || "N.P.N. Care Hospital image");
+    formData.append("category", category);
 
     setUploading(true);
     setStatus("Uploading image...");
@@ -46,6 +49,7 @@ export function AdminGalleryUploader({ images: initialImages }: AdminGalleryUplo
     setImages((current) => [result.image as HospitalGalleryImage, ...current]);
     setTitle("");
     setAlt("");
+    setCategory(categories[0] ?? "");
     if (inputRef.current) inputRef.current.value = "";
     setStatus("Image uploaded. It is now visible on the customer gallery page.");
   }
@@ -70,9 +74,17 @@ export function AdminGalleryUploader({ images: initialImages }: AdminGalleryUplo
           Image description
           <input value={alt} onChange={(event) => setAlt(event.target.value)} placeholder="Short description for patients and accessibility" />
         </label>
+        <label>
+          Gallery section
+          <select value={category} onChange={(event) => setCategory(event.target.value)}>
+            {categories.map((item) => (
+              <option key={item}>{item}</option>
+            ))}
+          </select>
+        </label>
         <label className="upload-dropzone">
           <UploadCloud size={24} />
-          <strong>{uploading ? "Uploading..." : "Choose hospital image"}</strong>
+          <strong>{uploading ? "Uploading..." : "Add Image"}</strong>
           <span>JPG, PNG, or WebP up to 6MB</span>
           <input
             ref={inputRef}
@@ -96,6 +108,7 @@ export function AdminGalleryUploader({ images: initialImages }: AdminGalleryUplo
               <img alt={image.alt} src={image.src} />
               <div>
                 <h3>{image.title}</h3>
+                {image.category ? <span className="status">{image.category}</span> : null}
                 <p>{new Date(image.uploadedAt).toLocaleDateString("en-IN")}</p>
               </div>
             </article>
