@@ -461,7 +461,8 @@ export async function createAssistantAppointment(input: AssistantAppointmentInpu
     treatment: input.department,
     doctor: input.preferredDoctor || "Doctor preference not provided",
     date: input.preferredDate,
-    time: input.preferredTime || "Morning"
+    time: input.preferredTime || "Morning",
+    consentGiven: true,
   });
 
   await queueEmailNotification({

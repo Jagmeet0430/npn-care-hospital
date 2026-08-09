@@ -41,6 +41,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, errors: result.error.flatten().fieldErrors }, { status: 400 });
   }
 
-  const appointment = await addAppointment(sanitizeObject(result.data));
+  const appointment = await addAppointment({
+  ...sanitizeObject(result.data),
+  consentGiven: true,
+});
   return NextResponse.json({ ok: true, appointment });
 }
