@@ -9020,3 +9020,52 @@ button {
     height: 19px;
   }
 }
+
+
+/* ==========================================
+   AGREEMENT PRINT / PDF
+   ========================================== */
+
+@media print {
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the agreement success panel */
+  #agreement-success-panel,
+  #agreement-success-panel * {
+    visibility: visible;
+  }
+
+  /* Position printable agreement */
+  #agreement-success-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 40px;
+    background: white !important;
+    color: #172033 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Hide action buttons from PDF/print */
+  #agreement-success-panel .hero-actions {
+    display: none !important;
+  }
+
+  /* Make sure text prints correctly */
+  #agreement-success-panel h1,
+  #agreement-success-panel p,
+  #agreement-success-panel span {
+    color: #172033 !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+}

@@ -1,5 +1,43 @@
 [
   {
+    "id": "74cc3a02-3e80-46ab-961b-af8b8eaaae6e",
+    "at": "2026-08-09T03:17:27.562Z",
+    "action": "AGREEMENT_SUBMITTED",
+    "actorEmail": "royce@gmail.com",
+    "targetType": "Agreement",
+    "targetId": "NPN-AGR-20260809-1961C406",
+    "message": "Digital agreement submitted."
+  },
+  {
+    "id": "4c561e88-2f32-45a3-ad99-9c5f14d3c591",
+    "at": "2026-08-09T02:21:57.817Z",
+    "action": "AGREEMENT_SUBMITTED",
+    "actorEmail": "alyx@gmail.com",
+    "targetType": "Agreement",
+    "targetId": "NPN-AGR-20260809-3205B0DE",
+    "message": "Digital agreement submitted."
+  },
+  {
+    "id": "7977b37c-fc44-4468-9b3e-1c93395b881a",
+    "at": "2026-08-08T14:15:22.430Z",
+    "action": "AGREEMENT_SUBMITTED",
+    "actorEmail": "lisa@gmail.com",
+    "targetType": "Agreement",
+    "targetId": "NPN-AGR-20260808-12322123",
+    "message": "Digital agreement submitted."
+  },
+  {
+    "id": "e36b8d1c-057e-49b7-ba00-24e11a3585e6",
+    "at": "2026-08-04T12:59:12.383Z",
+    "action": "LOGIN_SUCCESS",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+    "message": "User signed in successfully."
+  },
+  {
     "id": "a96a65d2-ac7c-49f0-a8ee-0e9d9861af91",
     "at": "2026-08-01T13:31:46.163Z",
     "action": "LOGIN_SUCCESS",

@@ -3,6 +3,13 @@
 import { useMemo, useRef, useState } from "react";
 import type React from "react";
 import { useRouter } from "next/navigation";
+import { createPatient } from "@/lib/patient";
+import { createMedicalInformation } from "@/lib/medical-information";
+import { createTreatmentDetails } from "@/lib/treatment-details";
+import { uploadDocument } from "@/lib/upload-document";
+// import { createAgreementConfirmation } from "@/lib/agreement-confirmations";
+
+import { createDigitalSignature } from "@/lib/digital-signatures";
 import {
   ArrowLeft,
   ArrowRight,
@@ -69,6 +76,7 @@ const agreementSections = [
 ] as const;
 
 const initialForm: AgreementInput = {
+  patientId: "",
   patient: {
     fullName: "",
     guardianName: "",
@@ -124,6 +132,7 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
   const [errors, setErrors] = useState<AgreementErrors>({});
   const [uploadProgress, setUploadProgress] = useState(0);
   const [submitting, setSubmitting] = useState(false);
+  const [patientId, setPatientId] = useState<string | null>(null);
   const completion = Math.round(((step + 1) / steps.length) * 100);
 
   const doctorOptions = useMemo(() => doctors.map((doctor) => doctor.name), [doctors]);
@@ -146,57 +155,471 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
   }
 
   function validateCurrentStep() {
-    const nextErrors: AgreementErrors = {};
+  const nextErrors: AgreementErrors = {};
 
+  // STEP 0 - Patient Information
+  if (step === 0) {
+    field(
+      "fullName",
+      form.patient.fullName,
+      "Full name",
+      nextErrors
+    );
+
+    field(
+      "guardianName",
+      form.patient.guardianName,
+      "Father's / husband's name",
+      nextErrors
+    );
+
+    field(
+      "gender",
+      form.patient.gender,
+      "Gender",
+      nextErrors
+    );
+
+    field(
+      "dob",
+      form.patient.dob,
+      "Date of birth",
+      nextErrors
+    );
+
+    field(
+      "age",
+      form.patient.age,
+      "Age",
+      nextErrors
+    );
+
+    field(
+      "mobile",
+      form.patient.mobile,
+      "Mobile number",
+      nextErrors
+    );
+
+    field(
+      "address",
+      form.patient.address,
+      "Address",
+      nextErrors
+    );
+
+    field(
+      "city",
+      form.patient.city,
+      "City",
+      nextErrors
+    );
+
+    field(
+      "state",
+      form.patient.state,
+      "State",
+      nextErrors
+    );
+
+    field(
+      "pinCode",
+      form.patient.pinCode,
+      "PIN code",
+      nextErrors
+    );
+
+    if (
+      form.patient.email &&
+      !form.patient.email.includes("@")
+    ) {
+      nextErrors.email = "Enter a valid email";
+    }
+
+    if (
+      form.patient.mobile &&
+      form.patient.mobile.replace(/\D/g, "").length < 10
+    ) {
+      nextErrors.mobile = "Enter a valid mobile number";
+    }
+  }
+
+  // STEP 1 - Medical Information
+  if (step === 1) {
+    Object.entries(form.medical).forEach(([key, value]) => {
+      field(
+        key,
+        value,
+        key.replace(/([A-Z])/g, " $1"),
+        nextErrors
+      );
+    });
+  }
+
+  // STEP 2 - Treatment Details
+  if (step === 2) {
+    Object.entries(form.treatment).forEach(([key, value]) => {
+      field(
+        key,
+        value,
+        key.replace(/([A-Z])/g, " $1"),
+        nextErrors
+      );
+    });
+  }
+
+  // STEP 3 - Documents
+  if (step === 3 && form.documents.length === 0) {
+    nextErrors.documents =
+      "Upload at least one required document";
+  }
+
+  // STEP 4 - Digital Agreement
+  if (step === 4) {
+    Object.entries(form.confirmations).forEach(
+      ([key, value]) => {
+        if (!value) {
+          nextErrors[key] = "Required";
+        }
+      }
+    );
+  }
+
+  // STEP 5 - Digital Signature
+  if (step === 5) {
+    field(
+      "signature",
+      form.signature.value,
+      "Signature",
+      nextErrors
+    );
+  }
+
+  setErrors(nextErrors);
+
+  return Object.keys(nextErrors).length === 0;
+}
+
+ async function next() {
+  if (!validateCurrentStep()) {
+    return;
+  }
+
+  try {
+    // ==========================================
+    // STEP 0 - CREATE PATIENT
+    // ==========================================
     if (step === 0) {
-      field("fullName", form.patient.fullName, "Full name", nextErrors);
-      field("guardianName", form.patient.guardianName, "Father's / husband's name", nextErrors);
-      field("gender", form.patient.gender, "Gender", nextErrors);
-      field("dob", form.patient.dob, "Date of birth", nextErrors);
-      field("age", form.patient.age, "Age", nextErrors);
-      field("mobile", form.patient.mobile, "Mobile number", nextErrors);
-      field("address", form.patient.address, "Address", nextErrors);
-      field("city", form.patient.city, "City", nextErrors);
-      field("state", form.patient.state, "State", nextErrors);
-      field("pinCode", form.patient.pinCode, "PIN code", nextErrors);
-      if (form.patient.email && !form.patient.email.includes("@")) nextErrors.email = "Enter a valid email";
-      if (form.patient.mobile && form.patient.mobile.replace(/\D/g, "").length < 10) nextErrors.mobile = "Enter a valid mobile number";
-    }
+      console.log("STEP 0 - Creating patient...");
 
-    if (step === 1) {
-      Object.entries(form.medical).forEach(([key, value]) => field(key, value, key.replace(/([A-Z])/g, " $1"), nextErrors));
-    }
-
-    if (step === 2) {
-      Object.entries(form.treatment).forEach(([key, value]) => field(key, value, key.replace(/([A-Z])/g, " $1"), nextErrors));
-    }
-
-    if (step === 3 && form.documents.length === 0) {
-      nextErrors.documents = "Upload at least one required document";
-    }
-
-    if (step === 4) {
-      Object.entries(form.confirmations).forEach(([key, value]) => {
-        if (!value) nextErrors[key] = "Required";
+      const result = await createPatient({
+        fullName: form.patient.fullName,
+        fatherHusbandName: form.patient.guardianName,
+        gender: form.patient.gender,
+        dateOfBirth: form.patient.dob,
+        age: Number(form.patient.age),
+        mobile: form.patient.mobile,
+        email: form.patient.email,
+        address: form.patient.address,
+        city: form.patient.city,
+        state: form.patient.state,
+        pinCode: form.patient.pinCode,
       });
+
+      console.log("Patient API response:", result);
+
+      if (!result?.success || !result.patient?.id) {
+        alert("Unable to save patient.");
+        return;
+      }
+
+      const newPatientId = result.patient.id;
+
+      console.log(
+        "PATIENT CREATED:",
+        newPatientId
+      );
+
+      // Store in React state
+      setPatientId(newPatientId);
+
+      // ALSO store inside the form
+      // This prevents patient ID from being lost
+      setForm((current) => ({
+        ...current,
+        patientId: newPatientId,
+      }));
     }
 
+    // ==========================================
+    // GET THE CURRENT PATIENT ID
+    // ==========================================
+    const activePatientId =
+      patientId || form.patientId;
+
+    console.log(
+      "ACTIVE PATIENT ID:",
+      activePatientId
+    );
+
+    // ==========================================
+    // STEP 1 - MEDICAL INFORMATION
+    // ==========================================
+    if (step === 1) {
+      if (!activePatientId) {
+        alert(
+          "Patient ID not found. Please go back to Patient Information and save the patient first."
+        );
+        return;
+      }
+
+      console.log(
+        "STEP 1 - Saving medical information..."
+      );
+
+      const result =
+        await createMedicalInformation({
+          patientId: activePatientId,
+
+          diseaseProblem:
+            form.medical.disease,
+
+          duration:
+            form.medical.duration,
+
+          symptoms:
+            form.medical.symptoms,
+
+          previousTreatment:
+            form.medical.previousTreatment,
+
+          currentMedicines:
+            form.medical.currentMedicines,
+
+          medicalHistory:
+            form.medical.medicalHistory,
+
+          allergies:
+            form.medical.allergies,
+
+          doctorPreference:
+            form.medical.doctorPreference,
+        });
+
+      console.log(
+        "Medical API response:",
+        result
+      );
+
+      if (!result?.success) {
+        alert(
+          "Unable to save medical information."
+        );
+        return;
+      }
+    }
+
+    // ==========================================
+    // STEP 2 - TREATMENT DETAILS
+    // ==========================================
+    if (step === 2) {
+      if (!activePatientId) {
+        alert(
+          "Patient ID not found. Please go back to Patient Information and save the patient first."
+        );
+        return;
+      }
+
+      console.log(
+        "STEP 2 - Saving treatment details..."
+      );
+
+      const result =
+        await createTreatmentDetails({
+          patientId: activePatientId,
+
+          courseDuration:
+            form.treatment.courseDuration,
+
+          recommendedTherapy:
+            form.treatment.recommendedTherapy,
+
+          assignedDoctor:
+            form.treatment.assignedDoctor,
+
+          hospitalBranch:
+            form.treatment.hospitalBranch,
+        });
+
+      console.log(
+        "Treatment API response:",
+        result
+      );
+
+      if (!result?.success) {
+        alert(
+          "Unable to save treatment details."
+        );
+        return;
+      }
+    }
+
+    // ==========================================
+    // STEP 3 - DOCUMENTS
+    // ==========================================
+    if (step === 3) {
+      if (!activePatientId) {
+        alert(
+          "Patient ID not found. Please go back to Patient Information and save the patient first."
+        );
+        return;
+      }
+
+      if (form.documents.length === 0) {
+        alert(
+          "Please upload at least one document."
+        );
+        return;
+      }
+
+      console.log(
+        "STEP 3 - Documents already uploaded."
+      );
+    }
+
+    // ==========================================
+    // STEP 4 - DIGITAL AGREEMENT
+    // ==========================================
+    if (step === 4) {
+      if (!activePatientId) {
+        alert(
+          "Patient ID not found. Please go back to Patient Information and save the patient first."
+        );
+        return;
+      }
+
+      const confirmations =
+        form.confirmations;
+
+      const allConfirmed =
+        confirmations.declaration &&
+        confirmations.treatmentConsent &&
+        confirmations.privacyPolicy &&
+        confirmations.medicalConfirmation &&
+        confirmations.responsibilities &&
+        confirmations.importantNotes &&
+        confirmations.finalConsent;
+
+      console.log(
+        "Agreement confirmations:",
+        confirmations
+      );
+
+      if (!allConfirmed) {
+        setErrors({
+          submit:
+            "Please confirm all agreement sections before continuing.",
+        });
+
+        return;
+      }
+
+      console.log(
+        "STEP 4 - Digital agreement confirmed."
+      );
+
+      /*
+       * IMPORTANT:
+       * Do NOT call /api/agreement-confirmations here.
+       *
+       * Your final /api/agreements endpoint already receives
+       * the complete agreement including confirmations.
+       *
+       * The previous confirmation API was expecting a different
+       * payload and was causing the 400 validation error.
+       */
+    }
+
+    // ==========================================
+    // STEP 5 - DIGITAL SIGNATURE
+    // ==========================================
     if (step === 5) {
-      field("signature", form.signature.value, "Signature", nextErrors);
+      if (!activePatientId) {
+        alert(
+          "Patient ID not found. Please go back to Patient Information and save the patient first."
+        );
+        return;
+      }
+
+      if (!form.signature?.value?.trim()) {
+        alert(
+          "Please provide your signature."
+        );
+        return;
+      }
+
+      console.log(
+        "STEP 5 - Saving digital signature..."
+      );
+
+      const result =
+        await createDigitalSignature({
+          patientId: activePatientId,
+          signature:
+            form.signature.value,
+        });
+
+      console.log(
+        "Digital Signature API Response:",
+        result
+      );
+
+      if (!result?.success) {
+        alert(
+          "Unable to save digital signature."
+        );
+        return;
+      }
+
+      console.log(
+        "Digital signature saved successfully."
+      );
     }
 
-    setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
-  }
+    // ==========================================
+    // MOVE TO NEXT STEP
+    // ==========================================
+    setErrors({});
 
-  function next() {
-    if (validateCurrentStep()) setStep((current) => Math.min(current + 1, steps.length - 1));
+    setStep((current) =>
+      Math.min(
+        current + 1,
+        steps.length - 1
+      )
+    );
+
+  } catch (error) {
+    console.error(
+      "Agreement next() error:",
+      error
+    );
+
+    const message =
+      error instanceof Error
+        ? error.message
+        : String(error);
+
+    alert(
+      `Something went wrong: ${message}`
+    );
   }
+}
 
   function previous() {
     setErrors({});
     setStep((current) => Math.max(current - 1, 0));
   }
+  
 
   async function handleFiles(label: string, files: FileList | null) {
     if (!files?.length) return;
@@ -223,11 +646,36 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
           })
       )
     );
-    setUploadProgress(100);
-    setForm((current) => ({ ...current, documents: [...current.documents, ...documents] }));
-    window.setTimeout(() => setUploadProgress(0), 800);
-  }
+    // Upload every selected file to Supabase
+if (!patientId) {
+  alert("Patient not found.");
+  return;
+}
 
+for (const file of Array.from(files)) {
+
+  const result = await uploadDocument(
+    patientId,
+    label,
+    file
+  );
+
+  if (!result.success) {
+    alert("Failed to upload " + file.name);
+    return;
+  }
+}
+
+// Keep local preview in React state
+setUploadProgress(100);
+
+setForm((current) => ({
+  ...current,
+  documents: [...current.documents, ...documents],
+}));
+
+window.setTimeout(() => setUploadProgress(0), 800);
+  }
   function startDraw(event: React.PointerEvent<HTMLCanvasElement>) {
     drawing.current = true;
     draw(event);
@@ -262,25 +710,92 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
     setForm((current) => ({ ...current, signature: { ...current.signature, value: "", typedName: "" } }));
   }
 
-  async function submitAgreement() {
-    if (!validateCurrentStep()) return;
-    setSubmitting(true);
+async function submitAgreement() {
+  if (!validateCurrentStep()) {
+    return;
+  }
+
+  setSubmitting(true);
+
+  try {
     const response = await fetch("/api/agreements", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form)
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(form),
     });
-    const result = (await response.json()) as { ok: boolean; agreement?: { agreementNo: string } };
-    setSubmitting(false);
 
-    if (response.ok && result.agreement) {
-      router.push(`/agreement/success/${result.agreement.agreementNo}`);
+    // Read as text first.
+    // This prevents "Unexpected token <" when Next.js
+    // returns an HTML error page.
+    const responseText = await response.text();
+
+    console.log("Agreement API status:", response.status);
+    console.log("Agreement API response:", responseText);
+
+    let result: {
+      ok?: boolean;
+      agreement?: {
+        agreementNo: string;
+      };
+      message?: string;
+      errors?: unknown;
+    };
+
+    try {
+      result = JSON.parse(responseText);
+    } catch {
+      console.error(
+        "API returned non-JSON response:",
+        responseText
+      );
+
+      setErrors({
+        submit:
+          "The server returned an unexpected response. Please check the terminal for the API error.",
+      });
+
       return;
     }
 
-    setErrors({ submit: "Please review all steps before submitting." });
-  }
+    if (!response.ok || !result.ok) {
+      console.error("Agreement submission failed:", {
+        status: response.status,
+        result,
+      });
 
+      setErrors({
+        submit:
+          result.message ||
+          "Unable to submit the agreement. Please check the information and try again.",
+      });
+
+      return;
+    }
+
+    if (result.agreement?.agreementNo) {
+      router.push(
+        `/agreement/success/${result.agreement.agreementNo}`
+      );
+      return;
+    }
+
+    setErrors({
+      submit: "Agreement was saved but no agreement number was returned.",
+    });
+  } catch (error) {
+    console.error("Agreement submission request failed:", error);
+
+    setErrors({
+      submit:
+        "Unable to connect to the server. Please check your connection and try again.",
+    });
+  } finally {
+    setSubmitting(false);
+  }
+}
   return (
     <section className="agreement-shell">
       <div className="agreement-progress-card">
@@ -393,6 +908,8 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
             </div>
           ) : null}
 
+          
+
           {step === 4 ? (
             <div className="wizard-section">
               <StepTitle icon={<FileCheck2 size={22} />} title="डिजिटल एग्रीमेंट" text="हस्ताक्षर करने से पहले प्रत्येक शर्त पढ़कर पुष्टि करें।" />
@@ -419,6 +936,9 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
               </div>
             </div>
           ) : null}
+
+
+          
 
           {step === 5 ? (
             <div className="wizard-section">
@@ -482,18 +1002,81 @@ export function AgreementWizard({ doctors, departments, hospital }: AgreementWiz
           ) : null}
 
           {step === 6 ? (
-            <div className="wizard-section">
-              <StepTitle icon={<CheckCircle2 size={22} />} title="Review Agreement" text="Confirm the complete summary before final submission." />
-              <ReviewBlock title="Patient Information" items={[form.patient.fullName, form.patient.mobile, form.patient.email || "No email", `${form.patient.city}, ${form.patient.state} ${form.patient.pinCode}`]} />
-              <ReviewBlock title="Medical Information" items={[form.medical.disease, form.medical.symptoms, form.medical.duration, form.medical.doctorPreference]} />
-              <ReviewBlock title="Treatment Details" items={[form.treatment.courseDuration, form.treatment.recommendedTherapy, form.treatment.assignedDoctor, form.treatment.hospitalBranch]} />
-              <ReviewBlock title="Uploaded Documents" items={form.documents.map((document) => `${document.label}: ${document.name}`)} />
-              <ReviewBlock title="Agreement" items={["All agreement sections confirmed", "Final voluntary consent accepted"]} />
-              <ReviewBlock title="Signature" items={[form.signature.value.startsWith("data:image") ? "Drawn signature captured" : form.signature.value]} />
-              {errors.submit ? <p className="field-error">{errors.submit}</p> : null}
-            </div>
-          ) : null}
+  <div className="wizard-section">
 
+    <StepTitle
+      icon={<CheckCircle2 size={22} />}
+      title="Review Agreement"
+      text="Confirm the complete summary before final submission."
+    />
+
+    <ReviewBlock
+  title="Patient Information"
+  items={[
+    form.patient.fullName,
+    form.patient.mobile,
+    form.patient.email || "No email",
+    form.patient.address,
+    `${form.patient.city}, ${form.patient.state} ${form.patient.pinCode}`,
+  ]}
+  onEdit={() => setStep(0)}
+/>
+
+    <ReviewBlock
+      title="Medical Information"
+      items={[
+        form.medical.disease,
+        form.medical.symptoms,
+        form.medical.duration,
+        form.medical.doctorPreference,
+      ]}
+      onEdit={() => setStep(1)}
+    />
+
+    <ReviewBlock
+      title="Treatment Details"
+      items={[
+        form.treatment.courseDuration,
+        form.treatment.recommendedTherapy,
+        form.treatment.assignedDoctor,
+        form.treatment.hospitalBranch,
+      ]}
+      onEdit={() => setStep(2)}
+    />
+
+    <ReviewBlock
+      title="Uploaded Documents"
+      items={form.documents.map(
+        (document) => `${document.label}: ${document.name}`
+      )}
+      onEdit={() => setStep(3)}
+    />
+
+    <ReviewBlock
+      title="Agreement"
+      items={[
+        "All agreement sections confirmed",
+        "Final voluntary consent accepted",
+      ]}
+      onEdit={() => setStep(4)}
+    />
+
+    <ReviewBlock
+  title="Signature"
+  items={[
+    form.signature.value.startsWith("data:image")
+      ? "Drawn signature captured"
+      : form.signature.value,
+  ]}
+  onEdit={() => setStep(5)}
+/>
+
+    {errors.submit ? (
+      <p className="field-error">{errors.submit}</p>
+    ) : null}
+
+  </div>
+) : null}
           <div className="wizard-actions">
             <button className="button button-quiet" type="button" onClick={previous} disabled={step === 0}>
               <ArrowLeft size={18} />
@@ -588,16 +1171,32 @@ function WizardSelect({
   );
 }
 
-function ReviewBlock({ title, items }: { title: string; items: string[] }) {
+function ReviewBlock({
+  title,
+  items,
+  onEdit,
+}: {
+  title: string;
+  items: string[];
+  onEdit: () => void;
+}) {
   return (
     <article className="review-block">
       <h3>{title}</h3>
+
       <ul>
-        {items.map((item) => (
-          <li key={item}>{item}</li>
+        {items.map((item, index) => (
+          <li key={`${title}-${index}`}>
+            {item}
+          </li>
         ))}
       </ul>
-      <button className="button button-quiet" type="button">
+
+      <button
+        className="button button-quiet"
+        type="button"
+        onClick={onEdit}
+      >
         Edit
       </button>
     </article>

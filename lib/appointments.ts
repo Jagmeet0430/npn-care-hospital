@@ -1,80 +1,235 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import path from "node:path";
+import { supabase } from "@/lib/supabase";
 import type { AppointmentStatus } from "@/lib/appointment-shared";
-import { decryptJson, encryptJson, isEncryptedPayload } from "@/lib/secure-json-store";
 
 export type AppointmentRecord = {
   id: string;
-  status: AppointmentStatus;
+  appointmentNumber?: string;
+
   name: string;
   age: number;
   gender: string;
+
   phone: string;
   email?: string;
+
   treatment: string;
   doctor: string;
+
   date: string;
   time: string;
+
+  status: AppointmentStatus;
+  paymentStatus: string;
+
+  consentGiven: boolean;
+  notes?: string;
+
   createdAt: string;
 };
 
-const appointmentsPath = path.join(process.cwd(), "data", "appointments.json");
-
 export async function getAppointments(): Promise<AppointmentRecord[]> {
-  try {
-    const raw = await readFile(appointmentsPath, "utf8");
-    const parsed = JSON.parse(raw) as unknown;
-    const appointments = isEncryptedPayload(parsed) ? decryptJson<AppointmentRecord[]>(parsed) : (parsed as AppointmentRecord[]);
-    const liveAppointments = appointments.filter((appointment) => !appointment.id.startsWith("appt_seed_"));
+  const { data, error } = await supabase
+    .from("appointments")
+    .select("*")
+    .order("created_at", { ascending: false });
 
-    if (liveAppointments.length !== appointments.length) {
-      await saveAppointments(liveAppointments);
-    }
-
-    return liveAppointments;
-  } catch {
-    await saveAppointments([]);
+  if (error) {
+    console.error(error);
     return [];
   }
+
+  return (
+    data?.map((item) => ({
+      id: item.id,
+      appointmentNumber: item.appointment_number,
+
+      name: item.patient_name,
+
+      age: item.age,
+      gender: item.gender,
+
+      phone: item.phone,
+      email: item.email,
+
+      treatment: item.treatment_name,
+      doctor: item.doctor_name,
+
+      date: item.appointment_date,
+      time: item.appointment_time,
+
+      status: item.status,
+      paymentStatus: item.payment_status,
+
+      consentGiven: item.consent_given,
+
+      notes: item.notes,
+
+      createdAt: item.created_at,
+    })) ?? []
+  );
 }
 
-export async function saveAppointments(appointments: AppointmentRecord[]) {
-  await mkdir(path.dirname(appointmentsPath), { recursive: true });
-  await writeFile(appointmentsPath, `${JSON.stringify(encryptJson(appointments), null, 2)}\n`, "utf8");
-}
+export async function addAppointment(
+  appointment: Omit<
+    AppointmentRecord,
+    | "id"
+    | "appointmentNumber"
+    | "status"
+    | "paymentStatus"
+    | "createdAt"
+  >
+) {
+  const { data, error } = await supabase
+    .from("appointments")
+    .insert({
+      patient_name: appointment.name,
 
-export async function addAppointment(appointment: Omit<AppointmentRecord, "id" | "status" | "createdAt">) {
-  const appointments = await getAppointments();
-  const nextAppointment: AppointmentRecord = {
-    id: crypto.randomUUID(),
-    status: "received",
-    createdAt: new Date().toISOString(),
-    ...appointment
+      age: appointment.age,
+      gender: appointment.gender,
+
+      phone: appointment.phone,
+      email: appointment.email,
+
+      treatment_name: appointment.treatment,
+      doctor_name: appointment.doctor,
+
+      appointment_date: appointment.date,
+      appointment_time: appointment.time,
+
+      status: "received",
+      payment_status: "Unpaid",
+
+      consent_given: appointment.consentGiven,
+      notes: appointment.notes,
+    })
+    .select()
+    .single();
+
+  if (error) throw error;
+
+  return {
+    id: data.id,
+    appointmentNumber: data.appointment_number,
+
+    name: data.patient_name,
+
+    age: data.age,
+    gender: data.gender,
+
+    phone: data.phone,
+    email: data.email,
+
+    treatment: data.treatment_name,
+    doctor: data.doctor_name,
+
+    date: data.appointment_date,
+    time: data.appointment_time,
+
+    status: data.status,
+    paymentStatus: data.payment_status,
+
+    consentGiven: data.consent_given,
+
+    notes: data.notes,
+
+    createdAt: data.created_at,
   };
-
-  await saveAppointments([nextAppointment, ...appointments]);
-  return nextAppointment;
 }
 
 export async function updateAppointment(
   id: string,
-  update: Partial<Pick<AppointmentRecord, "status" | "doctor" | "date" | "time">>
+  update: Partial<{
+    status: AppointmentStatus;
+    doctor: string;
+    treatment: string;
+    date: string;
+    time: string;
+    notes: string;
+  }>
 ) {
-  const appointments = await getAppointments();
-  const index = appointments.findIndex((appointment) => appointment.id === id);
-  if (index === -1) return null;
+  const { data, error } = await supabase
+    .from("appointments")
+    .update({
+      status: update.status,
 
-  const updatedAppointment: AppointmentRecord = { ...appointments[index], ...update };
-  const nextAppointments = appointments.with(index, updatedAppointment);
-  await saveAppointments(nextAppointments);
-  return updatedAppointment;
+      doctor_name: update.doctor,
+      treatment_name: update.treatment,
+
+      appointment_date: update.date,
+      appointment_time: update.time,
+
+      notes: update.notes,
+    })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) return null;
+
+  return {
+    id: data.id,
+    appointmentNumber: data.appointment_number,
+
+    name: data.patient_name,
+
+    age: data.age,
+    gender: data.gender,
+
+    phone: data.phone,
+    email: data.email,
+
+    treatment: data.treatment_name,
+    doctor: data.doctor_name,
+
+    date: data.appointment_date,
+    time: data.appointment_time,
+
+    status: data.status,
+    paymentStatus: data.payment_status,
+
+    consentGiven: data.consent_given,
+
+    notes: data.notes,
+
+    createdAt: data.created_at,
+  };
 }
 
 export async function deleteAppointment(id: string) {
-  const appointments = await getAppointments();
-  const appointment = appointments.find((item) => item.id === id);
-  if (!appointment) return null;
+  const { data, error } = await supabase
+    .from("appointments")
+    .delete()
+    .eq("id", id)
+    .select()
+    .single();
 
-  await saveAppointments(appointments.filter((item) => item.id !== id));
-  return appointment;
+  if (error) return null;
+
+  return {
+    id: data.id,
+    appointmentNumber: data.appointment_number,
+
+    name: data.patient_name,
+
+    age: data.age,
+    gender: data.gender,
+
+    phone: data.phone,
+    email: data.email,
+
+    treatment: data.treatment_name,
+    doctor: data.doctor_name,
+
+    date: data.appointment_date,
+    time: data.appointment_time,
+
+    status: data.status,
+    paymentStatus: data.payment_status,
+
+    consentGiven: data.consent_given,
+
+    notes: data.notes,
+
+    createdAt: data.created_at,
+  };
 }
