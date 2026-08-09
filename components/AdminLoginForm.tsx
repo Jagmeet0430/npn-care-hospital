@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { KeyRound, LockKeyhole, Mail, ShieldCheck } from "lucide-react";
 
@@ -15,7 +14,6 @@ function cleanNextPath(value: string) {
 }
 
 export function AdminLoginForm({ nextPath }: AdminLoginFormProps) {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [twoFactorCode, setTwoFactorCode] = useState("");
@@ -27,22 +25,28 @@ export function AdminLoginForm({ nextPath }: AdminLoginFormProps) {
     setLoading(true);
     setStatus("Checking admin access...");
 
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-      twoFactorCode
-    });
+    try {
+      const destination = cleanNextPath(nextPath);
+      const result = await signIn("credentials", {
+        email,
+        password,
+        twoFactorCode,
+        redirect: false,
+        callbackUrl: destination
+      });
 
-    setLoading(false);
+      if (result?.error) {
+        setStatus("Invalid email, password, or authentication code.");
+        return;
+      }
 
-    if (result?.error) {
-      setStatus("Incorrect credentials or two-factor code.");
-      return;
+      window.location.href = destination;
+    } catch (error) {
+      console.error(error);
+      setStatus("Login failed. Please refresh and try again.");
+    } finally {
+      setLoading(false);
     }
-
-    router.replace(cleanNextPath(nextPath));
-    router.refresh();
   }
 
   return (

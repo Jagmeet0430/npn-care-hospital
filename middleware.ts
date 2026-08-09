@@ -45,6 +45,7 @@ function applySecurityHeaders(response: NextResponse) {
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const isAuthRoute = pathname.startsWith("/api/auth");
 
   const isAdminPage =
     pathname === "/admin" || pathname.startsWith("/admin/");
@@ -52,6 +53,15 @@ export async function middleware(request: NextRequest) {
   const isAdminLogin = pathname === "/admin/login";
 
   const isApiRoute = pathname.startsWith("/api/");
+
+  if (isAuthRoute) {
+    const response = NextResponse.next();
+
+    applySecurityHeaders(response);
+    response.headers.set("Cache-Control", "no-store");
+
+    return response;
+  }
 
   const origin = request.headers.get("origin");
 
