@@ -1,5 +1,16 @@
 [
   {
+    "id": "c9b811bd-fa1b-4d5f-8c66-cd3639082ca8",
+    "at": "2026-08-10T11:23:26.036Z",
+    "action": "LOGIN_SUCCESS",
+    "actorId": "local-super-admin",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "message": "User signed in successfully."
+  },
+  {
     "id": "74cc3a02-3e80-46ab-961b-af8b8eaaae6e",
     "at": "2026-08-09T03:17:27.562Z",
     "action": "AGREEMENT_SUBMITTED",

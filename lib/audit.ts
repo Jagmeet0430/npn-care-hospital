@@ -6,6 +6,9 @@ export type AuditAction =
   | "LOGIN_FAILED"
   | "LOGOUT"
   | "CMS_UPDATED"
+  | "BLOG_CREATED"
+  | "BLOG_UPDATED"
+  | "BLOG_DELETED"
   | "MEDIA_UPLOADED"
   | "APPOINTMENT_UPDATED"
   | "APPOINTMENT_DELETED"
@@ -20,7 +23,7 @@ export type AuditAction =
   | "AI_DOCUMENT_UPLOADED"
   | "TESTIMONIAL_UPDATED"
   | "SECURITY_DENIED";
-
+  
 export type AuditLogEntry = {
   id: string;
   action: AuditAction;
