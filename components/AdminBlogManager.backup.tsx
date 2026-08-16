@@ -1,70 +1,15 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Copy, ExternalLink, Facebook, Instagram, Link2, Plus, Save, Share2, Trash2, Youtube } from "lucide-react";
 import type { CmsContent } from "@/lib/cms";
 
 type CmsArticle = CmsContent["blogPosts"][number] & {
-  id?: string;
-  categoryId?: string | null;
   status?: "Published" | "Draft";
   scheduledFor?: string;
   featured?: boolean;
   displayOrder?: number;
 };
-
-type DatabaseBlogPost = {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string | null;
-  content: string;
-  featured_image: string | null;
-  category_id: string | null;
-  author_name: string | null;
-  author_role: string | null;
-  status: string;
-  is_featured: boolean;
-  reading_time: number | null;
-  seo_title: string | null;
-  seo_description: string | null;
-  seo_keywords: string | null;
-  published_at: string | null;
-  created_at: string;
-  updated_at: string;
-  blog_categories?: {
-    id: string;
-    name: string;
-    slug: string;
-  } | null;
-};
-
-function databasePostToArticle(post: DatabaseBlogPost): CmsArticle {
-  return {
-    id: post.id,
-    slug: post.slug,
-    title: post.title,
-    category: post.blog_categories?.name ?? "Ayurveda",
-    categoryId: post.category_id,
-    readTime: `${post.reading_time ?? 5} min read`,
-    excerpt: post.excerpt ?? "",
-    image: post.featured_image ?? "/images/npn-care-hero.png",
-    publishedAt:
-      post.published_at?.slice(0, 10) ??
-      new Date(post.created_at).toISOString().slice(0, 10),
-    authorName: post.author_name ?? "N.P.N. Care Hospital",
-    authorQualification: post.author_role ?? "Health & Wellness Team",
-    metaTitle: post.seo_title ?? "",
-    metaDescription: post.seo_description ?? "",
-    fullContent: post.content
-      ? post.content.split("\n\n").filter(Boolean)
-      : [],
-    status: post.status === "PUBLISHED" ? "Published" : "Draft",
-    scheduledFor: "",
-    featured: post.is_featured,
-    displayOrder: 999,
-  };
-}
 
 type AdminBlogManagerProps = {
   initialContent: CmsContent;
@@ -122,71 +67,8 @@ export function AdminBlogManager({ initialContent }: AdminBlogManagerProps) {
   const [draggingSlug, setDraggingSlug] = useState<string | null>(null);
   const [status, setStatus] = useState("Create, edit, delete, and publish blogs here. Customer website updates after save.");
   const [saving, setSaving] = useState(false);
-  const [loadingBlogs, setLoadingBlogs] = useState(true);
 
   const selectedArticle = useMemo(() => articles.find((article) => article.slug === selectedSlug) ?? articles[0], [articles, selectedSlug]);
-  useEffect(() => {
-  async function loadBlogs() {
-    try {
-      setLoadingBlogs(true);
-
-      const response = await fetch("/api/blog", {
-        method: "GET",
-        cache: "no-store",
-      });
-
-      if (!response.ok) {
-        setStatus(
-          response.status === 401
-            ? "Admin login expired. Please login again."
-            : "Could not load blogs from database."
-        );
-        return;
-      }
-
-      const result = (await response.json()) as {
-        ok: boolean;
-        posts?: DatabaseBlogPost[];
-      };
-
-      if (!result.ok || !result.posts) {
-        setStatus("Could not load blogs from database.");
-        return;
-      }
-
-      const databaseArticles = result.posts.map(databasePostToArticle);
-
-      const sorted = sortArticles(databaseArticles);
-
-      setArticles(sorted);
-
-      if (sorted.length > 0) {
-        setSelectedSlug(sorted[0].slug);
-        setDraft({
-          ...emptyArticle,
-          ...sorted[0],
-          fullContent: sorted[0].fullContent ?? [],
-        });
-      } else {
-        setSelectedSlug("");
-        setDraft(emptyArticle);
-      }
-
-      setStatus(
-        `Loaded ${sorted.length} blog ${
-          sorted.length === 1 ? "article" : "articles"
-        } from the database.`
-      );
-    } catch (error) {
-      console.error("Failed to load blogs:", error);
-      setStatus("Unable to connect to the blog database.");
-    } finally {
-      setLoadingBlogs(false);
-    }
-  }
-
-  void loadBlogs();
-}, []);
   const caption = useMemo(() => socialCaption(draft), [draft]);
 
   function selectArticle(article: CmsArticle) {
@@ -223,245 +105,101 @@ export function AdminBlogManager({ initialContent }: AdminBlogManagerProps) {
   }
 
   async function saveArticle() {
-  if (!draft.title.trim() || !draft.slug.trim()) {
-    setStatus("Title and slug are required.");
-    return;
-  }
-
-  if (!draft.fullContent?.length && !draft.excerpt?.trim()) {
-    setStatus("Add blog content or an excerpt before saving.");
-    return;
-  }
-
-  setSaving(true);
-  setStatus("Saving article to database...");
-
-  try {
-    const cleanDraft: CmsArticle = {
-      ...draft,
-      slug: slugify(draft.slug),
-      displayOrder: Number(
-        draft.displayOrder ?? articles.length + 1
-      ),
-      fullContent: (draft.fullContent ?? []).filter(
-        (item) => item.trim().length > 0
-      ),
-    };
-
-    /*
-     * Convert the existing CMS editor format
-     * into the Supabase blog_posts format.
-     */
-    const payload = {
-      ...(cleanDraft.id ? { id: cleanDraft.id } : {}),
-      title: cleanDraft.title.trim(),
-      slug: cleanDraft.slug,
-      excerpt: cleanDraft.excerpt?.trim() ?? "",
-      content: (cleanDraft.fullContent ?? []).join("\n\n"),
-      featuredImage:
-        cleanDraft.image?.trim() ||
-        "/images/npn-care-hero.png",
-      categoryId: cleanDraft.categoryId ?? null,
-      authorName:
-        cleanDraft.authorName?.trim() ||
-        "N.P.N. Care Hospital",
-      authorRole:
-        cleanDraft.authorQualification?.trim() ||
-        "Health & Wellness Team",
-      status:
-        cleanDraft.status === "Published"
-          ? "PUBLISHED"
-          : "DRAFT",
-      isFeatured: Boolean(cleanDraft.featured),
-      readingTime:
-        Number.parseInt(
-          cleanDraft.readTime?.replace(/\D/g, "") || "5",
-          10
-        ) || 5,
-      seoTitle:
-        cleanDraft.metaTitle?.trim() ||
-        cleanDraft.title.trim(),
-      seoDescription:
-        cleanDraft.metaDescription?.trim() ||
-        cleanDraft.excerpt?.trim() ||
-        "",
-      seoKeywords: "",
-      publishedAt:
-        cleanDraft.status === "Published"
-          ? cleanDraft.publishedAt
-            ? new Date(
-                cleanDraft.publishedAt
-              ).toISOString()
-            : new Date().toISOString()
-          : null,
-    };
-
-    const response = await fetch("/api/blog", {
-      method: cleanDraft.id ? "PUT" : "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const result = (await response.json()) as {
-      ok?: boolean;
-      message?: string;
-      post?: DatabaseBlogPost;
-    };
-
-    if (!response.ok || !result.ok || !result.post) {
-      if (response.status === 401) {
-        setStatus(
-          "Admin login expired. Please login again."
-        );
-      } else if (response.status === 403) {
-        setStatus(
-          "You do not have permission to manage blogs."
-        );
-      } else {
-        setStatus(
-          result.message ||
-            "Could not save article to database."
-        );
-      }
-
+    if (!draft.title.trim() || !draft.slug.trim()) {
+      setStatus("Title and slug are required.");
       return;
     }
 
-    const savedArticle = databasePostToArticle(
-      result.post
-    );
+    setSaving(true);
+    const cleanDraft = {
+      ...draft,
+      slug: slugify(draft.slug),
+      displayOrder: Number(draft.displayOrder ?? articles.length + 1),
+      fullContent: (draft.fullContent ?? []).filter(Boolean)
+    };
+    const nextArticles = sortArticles([cleanDraft, ...articles.filter((article) => article.slug !== selectedArticle?.slug && article.slug !== cleanDraft.slug)]);
+    const nextContent = { ...content, blogPosts: nextArticles };
 
-    /*
-     * Keep the local UI synchronized with the
-     * database response.
-     */
-    const nextArticles = sortArticles([
-      savedArticle,
-      ...articles.filter(
-        (article) =>
-          article.id !== savedArticle.id &&
-          article.slug !== savedArticle.slug
-      ),
-    ]);
-
-    setArticles(nextArticles);
-    setSelectedSlug(savedArticle.slug);
-    setDraft({
-      ...emptyArticle,
-      ...savedArticle,
-      fullContent:
-        savedArticle.fullContent ?? [],
+    const response = await fetch("/api/cms", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nextContent)
     });
 
-    setStatus(
-      cleanDraft.status === "Published"
-        ? "Article published successfully."
-        : "Article saved as draft successfully."
-    );
-  } catch (error) {
-    console.error(
-      "AdminBlogManager saveArticle:",
-      error
-    );
-
-    setStatus(
-      "Unable to connect to the blog database."
-    );
-  } finally {
     setSaving(false);
+    if (!response.ok) {
+      setStatus(response.status === 401 ? "Admin login expired. Please login again." : "Could not save article.");
+      return;
+    }
+
+    const result = (await response.json()) as { content: CmsContent };
+    setContent(result.content);
+    setArticles(sortArticles(result.content.blogPosts as CmsArticle[]));
+    setSelectedSlug(cleanDraft.slug);
+    setDraft(cleanDraft);
+    setStatus("Article saved. It is now updated on the customer Knowledge Center.");
   }
-}
 
-  async function saveArticles(
-  nextArticles: CmsArticle[],
-  nextStatus: string
-) {
-  setArticles(sortArticles(nextArticles));
-  setStatus(
-    `${nextStatus} Display order will be controlled by published date and featured status.`
-  );
-}
+  async function saveArticles(nextArticles: CmsArticle[], nextStatus: string) {
+    const ordered = nextArticles.map((article, index) => ({ ...article, displayOrder: index + 1 }));
+    const nextContent = { ...content, blogPosts: ordered };
+    const response = await fetch("/api/cms", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nextContent)
+    });
 
-   
+    if (!response.ok) {
+      setStatus("Could not update blog order.");
+      return;
+    }
+
+    const result = (await response.json()) as { content: CmsContent };
+    setContent(result.content);
+    setArticles(sortArticles(result.content.blogPosts as CmsArticle[]));
+    setStatus(nextStatus);
+  }
 
   function handleDrop(targetSlug: string) {
-  setDraggingSlug(null);
+    if (!draggingSlug || draggingSlug === targetSlug) return;
+    const sourceIndex = articles.findIndex((article) => article.slug === draggingSlug);
+    const targetIndex = articles.findIndex((article) => article.slug === targetSlug);
+    if (sourceIndex === -1 || targetIndex === -1) return;
 
-  setStatus(
-    "Drag-and-drop ordering is currently disabled because the database does not have a display_order column."
-  );
-}
+    const nextArticles = [...articles];
+    const [moved] = nextArticles.splice(sourceIndex, 1);
+    nextArticles.splice(targetIndex, 0, moved);
+    setDraggingSlug(null);
+    void saveArticles(nextArticles, "Blog display order updated. Homepage uses published and featured articles first.");
+  }
 
   function toggleStatus() {
     setField("status", draft.status === "Draft" ? "Published" : "Draft");
   }
 
   async function deleteArticle(slug: string) {
-  const article = articles.find((item) => item.slug === slug);
-
-  if (!article?.id) {
-    setStatus("This blog does not have a database ID.");
-    return;
-  }
-
-  const confirmed = window.confirm(
-    `Are you sure you want to delete "${article.title}"?`
-  );
-
-  if (!confirmed) {
-    return;
-  }
-
-  setSaving(true);
-  setStatus("Deleting article from database...");
-
-  try {
-    const response = await fetch(`/api/blog/${article.id}`, {
-      method: "DELETE",
+    const nextArticles = articles.filter((article) => article.slug !== slug);
+    const nextContent = { ...content, blogPosts: nextArticles };
+    const response = await fetch("/api/cms", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nextContent)
     });
 
-    const result = (await response.json()) as {
-      ok?: boolean;
-      message?: string;
-    };
-
-    if (!response.ok || !result.ok) {
-      setStatus(
-        result.message || "Could not delete article from database."
-      );
+    if (!response.ok) {
+      setStatus("Could not delete article.");
       return;
     }
 
-    const nextArticles = articles.filter(
-      (item) => item.id !== article.id
-    );
-
-    setArticles(sortArticles(nextArticles));
-
-    const nextSelected = sortArticles(nextArticles)[0];
-
+    const result = (await response.json()) as { content: CmsContent };
+    const sorted = sortArticles(result.content.blogPosts as CmsArticle[]);
+    const nextSelected = sorted[0];
+    setContent(result.content);
+    setArticles(sorted);
     setSelectedSlug(nextSelected?.slug ?? "");
-
-    setDraft(
-      nextSelected
-        ? {
-            ...emptyArticle,
-            ...nextSelected,
-            fullContent: nextSelected.fullContent ?? [],
-          }
-        : emptyArticle
-    );
-
-    setStatus("Article deleted successfully.");
-  } catch (error) {
-    console.error("AdminBlogManager deleteArticle:", error);
-    setStatus("Unable to connect to the blog database.");
-  } finally {
-    setSaving(false);
+    setDraft(nextSelected ?? emptyArticle);
+    setStatus("Article deleted from admin and customer website.");
   }
-}
 
   async function copyCaption() {
     await navigator.clipboard.writeText(caption);

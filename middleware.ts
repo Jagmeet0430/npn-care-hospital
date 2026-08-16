@@ -100,29 +100,28 @@ export async function middleware(request: NextRequest) {
    */
   const origin = request.headers.get("origin");
 
-  if (isApiRoute && origin) {
-    const allowedOrigins = [
-      "http://localhost:3000",
-      "http://127.0.0.1:3000",
-      request.nextUrl.origin,
-    ];
+if (isApiRoute && origin) {
+  const allowedOrigins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://npn-care-hospital.vercel.app",
+  ];
 
-    if (!allowedOrigins.includes(origin)) {
-      const response = NextResponse.json(
-        {
-          ok: false,
-          message: "CORS origin not allowed.",
-        },
-        {
-          status: 403,
-        }
-      );
+  if (!allowedOrigins.includes(origin)) {
+    const response = NextResponse.json(
+      {
+        ok: false,
+        message: "CORS origin not allowed.",
+      },
+      {
+        status: 403,
+      }
+    );
 
-      applySecurityHeaders(response);
-
-      return response;
-    }
+    applySecurityHeaders(response);
+    return response;
   }
+}
 
   /*
    * Do NOT perform the old NextAuth admin redirect here.

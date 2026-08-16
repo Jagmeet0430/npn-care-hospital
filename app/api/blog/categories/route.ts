@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase-admin";
 import { requirePermission } from "@/lib/server-auth";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     return authorization.response;
   }
 
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from("blog_categories")
     .select("id, name, slug")
     .order("name", { ascending: true });

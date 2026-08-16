@@ -1,5 +1,64 @@
 [
   {
+    "id": "f372b8e5-9b89-49a5-951d-182eaf002ecc",
+    "at": "2026-08-16T02:02:27.630Z",
+    "action": "CMS_UPDATED",
+    "actorId": "de98dee9-4b46-47b6-9a93-aa5d3c85eee8",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "a4d0c7b1-2a9a-43fa-95fc-35898f822ab1",
+    "at": "2026-08-15T12:53:58.382Z",
+    "action": "CMS_UPDATED",
+    "actorId": "de98dee9-4b46-47b6-9a93-aa5d3c85eee8",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "d32ed536-336d-435c-95cc-a0695dc19f7c",
+    "at": "2026-08-15T12:25:49.716Z",
+    "action": "CMS_UPDATED",
+    "actorId": "de98dee9-4b46-47b6-9a93-aa5d3c85eee8",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "7c2dd446-4e04-4c54-9927-c37efef2c92a",
+    "at": "2026-08-15T12:20:38.072Z",
+    "action": "CMS_UPDATED",
+    "actorId": "de98dee9-4b46-47b6-9a93-aa5d3c85eee8",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "CMS",
+    "message": "CMS content updated."
+  },
+  {
+    "id": "1f1c03af-47ad-4d5f-a6d6-b8856e126218",
+    "at": "2026-08-15T12:07:13.231Z",
+    "action": "BLOG_CREATED",
+    "actorId": "de98dee9-4b46-47b6-9a93-aa5d3c85eee8",
+    "actorEmail": "npncarehospital786@gmail.com",
+    "role": "SUPER_ADMIN",
+    "targetType": "BLOG_POST",
+    "targetId": "c52ec4fa-52ae-4d0f-8863-215c6580543d",
+    "message": "Blog post created: 5 Simple Ways to Improve Your Health"
+  },
+  {
+    "id": "34afed9c-6dc1-4e21-a3fe-7193109e4da5",
+    "at": "2026-08-15T12:04:39.158Z",
+    "action": "SECURITY_DENIED",
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "message": "Unauthenticated request. Missing permission: cms:update"
+  },
+  {
     "id": "c9b811bd-fa1b-4d5f-8c66-cd3639082ca8",
     "at": "2026-08-10T11:23:26.036Z",
     "action": "LOGIN_SUCCESS",

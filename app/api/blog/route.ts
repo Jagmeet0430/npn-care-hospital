@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase-admin";
 import { requirePermission } from "@/lib/server-auth";
 import { appendAuditLog } from "@/lib/audit";
 
@@ -14,7 +14,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from("blog_posts")
       .select(`
         *,
@@ -75,7 +75,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from("blog_posts")
       .insert({
         title: body.title,
@@ -224,7 +224,7 @@ export async function PUT(request: Request) {
       updateData.seo_keywords = body.seoKeywords;
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from("blog_posts")
       .update(updateData)
       .eq("id", body.id)
@@ -297,13 +297,13 @@ export async function DELETE(request: Request) {
       );
     }
 
-    const { data: existingPost } = await supabase
+    const { data: existingPost } = await supabaseAdmin
       .from("blog_posts")
       .select("id, title")
       .eq("id", body.id)
       .maybeSingle();
 
-    const { error } = await supabase
+    const { error } = await supabaseAdmin
       .from("blog_posts")
       .delete()
       .eq("id", body.id);

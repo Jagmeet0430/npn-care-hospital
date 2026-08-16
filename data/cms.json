@@ -83,7 +83,7 @@
     "bottomRight": "Privacy | Terms | Accessibility"
   },
   "careers": {
-    "heroTitle": "Join Our Team",
+    "heroTitle": "Build Your Career With N.P.N.",
     "heroText": "Build a meaningful healthcare career with a hospital focused on professional care, natural healing, and patient dignity.",
     "primaryButton": "Apply Now",
     "secondaryButton": "View Openings",
@@ -137,7 +137,6 @@
     "applicationStatusTitle": "Application Status",
     "applicationStatusText": "After submission, each applicant receives an Application ID, submitted date, and current status.",
     "statusList": [
-      "Received",
       "Under Review",
       "Interview",
       "Selected",

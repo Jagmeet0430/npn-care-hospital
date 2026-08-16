@@ -395,14 +395,6 @@ function CareersEditor({
     });
   }
 
-    const [openCareerSection, setOpenCareerSection] = useState("01");
-
-  function toggleCareerSection(section: string) {
-    setOpenCareerSection((current) =>
-      current === section ? "" : section
-    );
-  }
-
   function updateOpening(
     index: number,
     field: "title" | "text",
@@ -562,11 +554,7 @@ function CareersEditor({
       </div>
 
       {/* HERO */}
-      <div
-  className={`career-admin-card ${
-    openCareerSection === "01" ? "is-open" : "is-collapsed"
-  }`}
->
+      <div className="career-admin-card">
         <div className="career-admin-card-heading">
           <div>
             <span className="career-admin-number">01</span>
@@ -614,18 +602,28 @@ function CareersEditor({
       </div>
 
       {/* OPENINGS */}
-      <div
-        className={`career-admin-card ${
-          openCareerSection === "02" ? "is-open" : "is-collapsed"
-        }`}
-      >
-        <div
-  className="career-admin-card-heading"
-  onClick={() => toggleCareerSection("02")}
-  role="button"
-  tabIndex={0}
-  aria-expanded={openCareerSection === "02"}
->
+      <div className="career-admin-card">
+        <div className="career-admin-card-heading">
+          <div>
+            <span className="career-admin-number">02</span>
+
+            <div>
+              <h3>Current Openings</h3>
+              <p>Manage available job positions.</p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="career-admin-add"
+            onClick={addOpening}
+          >
+            <Plus size={17} />
+            Add Position
+          </button>
+        </div>
+
+        <div className="career-admin-grid">
           <Field
             label="Section Eyebrow"
             value={value.openingsEyebrow}
@@ -687,18 +685,28 @@ function CareersEditor({
       </div>
 
       {/* BENEFITS */}
-      <div
-        className={`career-admin-card ${
-          openCareerSection === "03" ? "is-open" : "is-collapsed"
-        }`}
-      >
-        <div
-          className="career-admin-card-heading"
-          onClick={() => toggleCareerSection("03")}
-          role="button"
-          tabIndex={0}
-          aria-expanded={openCareerSection === "03"}
-        >
+      <div className="career-admin-card">
+        <div className="career-admin-card-heading">
+          <div>
+            <span className="career-admin-number">03</span>
+
+            <div>
+              <h3>Benefits</h3>
+              <p>Benefits displayed to potential applicants.</p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="career-admin-add"
+            onClick={addBenefit}
+          >
+            <Plus size={17} />
+            Add Benefit
+          </button>
+        </div>
+
+        <div className="career-admin-grid">
           <Field
             label="Section Eyebrow"
             value={value.benefitsEyebrow}
@@ -748,18 +756,28 @@ function CareersEditor({
       </div>
 
       {/* CULTURE */}
-      <div
-        className={`career-admin-card ${
-          openCareerSection === "04" ? "is-open" : "is-collapsed"
-        }`}
-      >
-        <div
-          className="career-admin-card-heading"
-          onClick={() => toggleCareerSection("04")}
-          role="button"
-          tabIndex={0}
-          aria-expanded={openCareerSection === "04"}
-        >
+      <div className="career-admin-card">
+        <div className="career-admin-card-heading">
+          <div>
+            <span className="career-admin-number">04</span>
+
+            <div>
+              <h3>Hospital Culture</h3>
+              <p>Culture and workplace information.</p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="career-admin-add"
+            onClick={addCultureCard}
+          >
+            <Plus size={17} />
+            Add Card
+          </button>
+        </div>
+
+        <div className="career-admin-grid">
           <Field
             label="Section Eyebrow"
             value={value.cultureEyebrow}
@@ -828,18 +846,19 @@ function CareersEditor({
       </div>
 
       {/* EMPLOYEE VOICE */}
-      <div
-        className={`career-admin-card ${
-          openCareerSection === "05" ? "is-open" : "is-collapsed"
-        }`}
-      >
-        <div
-          className="career-admin-card-heading"
-          onClick={() => toggleCareerSection("05")}
-          role="button"
-          tabIndex={0}
-          aria-expanded={openCareerSection === "05"}
-          >
+      <div className="career-admin-card">
+        <div className="career-admin-card-heading">
+          <div>
+            <span className="career-admin-number">05</span>
+
+            <div>
+              <h3>Employee Voice</h3>
+              <p>Quote section shown on the Careers page.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="career-admin-grid">
           <Field
             label="Eyebrow"
             value={value.quoteEyebrow}
@@ -867,18 +886,28 @@ function CareersEditor({
       </div>
 
       {/* APPLICATION */}
-      <div
-        className={`career-admin-card ${
-          openCareerSection === "06" ? "is-open" : "is-collapsed"
-        }`}
-      >
-        <div
-          className="career-admin-card-heading"
-          onClick={() => toggleCareerSection("06")}
-          role="button"
-          tabIndex={0}
-          aria-expanded={openCareerSection === "06"}
-        >
+      <div className="career-admin-card">
+        <div className="career-admin-card-heading">
+          <div>
+            <span className="career-admin-number">06</span>
+
+            <div>
+              <h3>Application & Status</h3>
+              <p>Application information and status labels.</p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="career-admin-add"
+            onClick={addStatus}
+          >
+            <Plus size={17} />
+            Add Status
+          </button>
+        </div>
+
+        <div className="career-admin-grid">
           <Field
             label="Application Eyebrow"
             value={value.applicationEyebrow}
@@ -956,18 +985,28 @@ function CareersEditor({
       </div>
 
       {/* FAQ */}
-      <div
-        className={`career-admin-card ${
-          openCareerSection === "07" ? "is-open" : "is-collapsed"
-        }`}
-      >
-        <div
-          className="career-admin-card-heading"
-          onClick={() => toggleCareerSection("07")}
-          role="button"
-          tabIndex={0}
-          aria-expanded={openCareerSection === "07"}
-        >
+      <div className="career-admin-card">
+        <div className="career-admin-card-heading">
+          <div>
+            <span className="career-admin-number">07</span>
+
+            <div>
+              <h3>Career FAQs</h3>
+              <p>Questions and answers for applicants.</p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="career-admin-add"
+            onClick={addFaq}
+          >
+            <Plus size={17} />
+            Add FAQ
+          </button>
+        </div>
+
+        <div className="career-admin-grid">
           <Field
             label="FAQ Eyebrow"
             value={value.faqEyebrow}

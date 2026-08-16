@@ -9703,3 +9703,491 @@ button {
     margin: 20mm;
   }
 }
+
+/* =========================================================
+   CAREERS CMS ADMIN
+   ========================================================= */
+
+.careers-admin-editor {
+  display: grid;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.careers-admin-intro {
+  padding: 24px 26px;
+  border: 1px solid rgba(15, 35, 28, 0.1);
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(247, 250, 248, 0.96)
+    );
+  box-shadow: 0 12px 32px rgba(15, 35, 28, 0.06);
+}
+
+.careers-admin-intro h3 {
+  margin: 8px 0 6px;
+  color: #10231c;
+  font-size: 1.45rem;
+  letter-spacing: -0.025em;
+}
+
+.careers-admin-intro p {
+  max-width: 760px;
+  margin: 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* Cards */
+
+.career-admin-card {
+  padding: 26px;
+  border: 1px solid rgba(15, 35, 28, 0.1);
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow:
+    0 14px 34px rgba(15, 35, 28, 0.055),
+    0 2px 8px rgba(15, 35, 28, 0.035);
+}
+
+.career-admin-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.career-admin-card-heading > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.career-admin-card-heading h3 {
+  margin: 0;
+  color: #10231c;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.career-admin-card-heading p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 0.88rem;
+}
+
+.career-admin-number {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  flex: 0 0 38px;
+
+  border-radius: 12px;
+
+  background: #10231c;
+  color: #d8b858;
+
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+/* Form layout */
+
+.career-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.career-admin-field {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.career-admin-field-full {
+  grid-column: 1 / -1;
+}
+
+.career-admin-field > span {
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 750;
+}
+
+.career-admin-input,
+.career-admin-textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  border: 1px solid #dbe3ea;
+  border-radius: 13px;
+
+  background: #ffffff;
+  color: #172033;
+
+  font: inherit;
+  font-size: 0.94rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.career-admin-input {
+  min-height: 48px;
+  padding: 0 14px;
+}
+
+.career-admin-textarea {
+  min-height: 110px;
+  padding: 13px 14px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.career-admin-input:hover,
+.career-admin-textarea:hover {
+  border-color: #c5d0d8;
+}
+
+.career-admin-input:focus,
+.career-admin-textarea:focus {
+  border-color: #b69a45;
+  background: #fffef9;
+  box-shadow:
+    0 0 0 4px rgba(216, 184, 88, 0.12);
+}
+
+/* Add buttons */
+
+.career-admin-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 40px;
+  padding: 0 13px;
+
+  border: 1px solid rgba(182, 154, 69, 0.35);
+  border-radius: 11px;
+
+  background: rgba(216, 184, 88, 0.1);
+  color: #735d18;
+
+  font-size: 0.82rem;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.career-admin-add:hover {
+  background: rgba(216, 184, 88, 0.18);
+  transform: translateY(-1px);
+}
+
+/* Repeatable cards */
+
+.career-repeat-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.career-repeat-card {
+  padding: 20px;
+
+  border: 1px solid #e2e8ee;
+  border-radius: 17px;
+
+  background: #f8fafb;
+}
+
+.career-repeat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 16px;
+}
+
+.career-repeat-header strong {
+  color: #10231c;
+  font-size: 0.92rem;
+}
+
+/* Simple lists */
+
+.career-simple-list,
+.career-status-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.career-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.career-list-item .career-admin-input {
+  flex: 1;
+}
+
+/* Delete */
+
+.career-delete {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  flex: 0 0 40px;
+
+  border: 1px solid rgba(185, 28, 28, 0.16);
+  border-radius: 10px;
+
+  background: rgba(185, 28, 28, 0.06);
+  color: #b91c1c;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.career-delete:hover {
+  background: rgba(185, 28, 28, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Mobile */
+
+@media (max-width: 760px) {
+  .career-admin-card {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .career-admin-card-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .career-admin-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .career-admin-field-full {
+    grid-column: auto;
+  }
+
+  .career-admin-add {
+    width: 100%;
+  }
+
+  .career-list-item {
+    align-items: stretch;
+  }
+
+  .career-list-item .career-admin-input {
+    min-width: 0;
+  }
+}
+
+/* =========================================================
+   CAREERS CMS - PREMIUM SECTION CARDS
+   ========================================================= */
+
+.careers-admin-editor {
+  display: grid;
+  gap: 16px;
+}
+
+.careers-admin-editor > .career-admin-card {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+
+  border: 1px solid rgba(15, 35, 28, 0.10);
+  border-radius: 20px;
+
+  background: #fff;
+
+  box-shadow:
+    0 10px 30px rgba(15, 35, 28, 0.045),
+    0 2px 8px rgba(15, 35, 28, 0.025);
+
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.careers-admin-editor > .career-admin-card:hover {
+  border-color: rgba(182, 154, 69, 0.28);
+
+  box-shadow:
+    0 16px 38px rgba(15, 35, 28, 0.07),
+    0 3px 10px rgba(15, 35, 28, 0.035);
+}
+
+/* Section header */
+
+.careers-admin-editor > .career-admin-card
+.career-admin-card-heading {
+  min-height: 76px;
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 17px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  border-bottom: 1px solid transparent;
+}
+
+.careers-admin-editor > .career-admin-card
+.career-admin-card-heading > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.careers-admin-editor > .career-admin-card
+.career-admin-card-heading h3 {
+  margin: 0;
+
+  color: #10231c;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.careers-admin-editor > .career-admin-card
+.career-admin-card-heading p {
+  margin: 4px 0 0;
+
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+/* Number */
+
+.careers-admin-editor .career-admin-number {
+  display: grid;
+  width: 38px;
+  height: 38px;
+
+  place-items: center;
+  flex: 0 0 38px;
+
+  border-radius: 11px;
+
+  background: #10231c;
+  color: #d8b858;
+
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+/* Content inside cards */
+
+.careers-admin-editor > .career-admin-card
+> .career-admin-grid,
+.careers-admin-editor > .career-admin-card
+> .career-repeat-list,
+.careers-admin-editor > .career-admin-card
+> .career-simple-list,
+.careers-admin-editor > .career-admin-card
+> .career-status-list {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.careers-admin-editor > .career-admin-card
+> .career-admin-grid {
+  padding-top: 20px;
+}
+
+.careers-admin-editor > .career-admin-card
+> .career-simple-list,
+.careers-admin-editor > .career-admin-card
+> .career-status-list {
+  padding-bottom: 20px;
+}
+
+.careers-admin-editor > .career-admin-card
+> .career-admin-grid + .career-repeat-list,
+.careers-admin-editor > .career-admin-card
+> .career-admin-grid + .career-simple-list,
+.careers-admin-editor > .career-admin-card
+> .career-admin-grid + .career-status-list {
+  margin-top: 0;
+}
+
+/* Employee Voice / standalone textarea */
+
+.careers-admin-editor > .career-admin-card
+> .career-admin-field {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* Add button */
+
+.careers-admin-editor .career-admin-add {
+  min-height: 38px;
+  padding: 0 13px;
+
+  white-space: nowrap;
+}
+
+/* Repeat cards */
+
+.careers-admin-editor .career-repeat-list {
+  display: grid;
+  gap: 12px;
+}
+
+.careers-admin-editor .career-repeat-card {
+  border-radius: 14px;
+  background: #f8fafb;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .careers-admin-editor > .career-admin-card
+  .career-admin-card-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .careers-admin-editor > .career-admin-card
+  .career-admin-card-heading > div:first-child {
+    width: 100%;
+  }
+
+  .careers-admin-editor .career-admin-add {
+    width: 100%;
+  }
+}
